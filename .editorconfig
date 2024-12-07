@@ -2,6 +2,11 @@
 # coding styles between different editors and IDEs
 # editorconfig.org
 
+#
+# Source: https://github.com/JetBrains/kotlin-wrappers/blob/master/.editorconfig
+#
+
+
 root = true
 
 [*]
