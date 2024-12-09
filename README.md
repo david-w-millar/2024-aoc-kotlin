@@ -15,7 +15,7 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 ## Template Notes
 
 * Added an [editorconfig][editorconfig] [file](.editorconfig)
-* Added the [Power-Assert Compiler Plugin][kotlin-power-asser]
+* Added the [Power-Assert Compiler Plugin][kotlin-power-assert]
 
 
 
