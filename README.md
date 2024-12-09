@@ -1,6 +1,7 @@
-# 2024-aoc-kotlin
+# 2024 Advent of Code Solutions in Kotlin
 
-Welcome to the Advent of Code[^aoc] Kotlin project created by [david-w-millar][github] using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
+Welcome to the Advent of Code[^aoc] Kotlin project created by [david-w-millar][github]
+using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
 
 In this repository, david-w-millar is about to provide solutions for the puzzles using [Kotlin][kotlin] language.
 
@@ -9,6 +10,13 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 - [Kotlin docs][docs]
 - [Kotlin Slack][slack]
 - Template [issue tracker][issues]
+
+
+## Template Notes
+
+* Added an [editorconfig][editorconfig] [file](.editorconfig)
+* Added the [Power-Assert Compiler Plugin][kotlin-power-asser]
+
 
 
 [^aoc]:
@@ -23,3 +31,7 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 [kotlin]: https://kotlinlang.org
 [slack]: https://surveys.jetbrains.com/s3/kotlin-slack-sign-up
 [template]: https://github.com/kotlin-hands-on/advent-of-code-kotlin-template
+[editorconfig]: https://editorconfig.org/
+[kotlin-power-assert]: https://kotlinlang.org/docs/power-assert.html
+
+

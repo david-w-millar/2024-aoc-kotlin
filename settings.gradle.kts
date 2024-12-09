@@ -1,4 +1,4 @@
-rootProject.name = "2024-aoc-kotlin"
+rootProject.name = "Advent of Code 20204 Kotlin Solutions - DWM"
 
 dependencyResolutionManagement {
     repositories {
