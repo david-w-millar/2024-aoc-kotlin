@@ -12,6 +12,15 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 - Template [issue tracker][issues]
 
 
+## Kotlin and other Resources
+
+[//]: # (TODO clean these links up)
+
+* https://kotlinlang.org/docs/home.html
+* https://play.kotlinlang.org/byExample/
+* [devdocs.io](https://devdocs.io)
+
+
 ## Template Notes
 
 * Added an [editorconfig][editorconfig] [file](.editorconfig)

@@ -5,6 +5,11 @@ import kotlin.math.absoluteValue
  * https://adventofcode.com/2024/day/1
  *
  * Super sloppy first pass
+ *
+ * TODO: truncate lists after sorting
+ *   - only consider the first 50 searches
+ *   - I assume the first search occurs in the "Chief Historian's Office"
+ *   - So maybe truncate to 49 points of data from the input file?
  */
 
 fun main() {
@@ -16,10 +21,18 @@ fun main() {
      *   - Unzip Pairs into the two lists and sort them
      *   - Zip sorted lists using a transformation that finds the distance between each pair of numbers
      *   - Sum up this value
+     *
+     * TODO: decompose this
+     * TODO: maybe use "partition" with index (even/odd/modulo 2) instead of crazy zip/unzipping
+     * TODO: inline things for faster execution and experimentation
+     * TODO: Run relevant code on changes
+     *   - Could be "watch-exec" with a Justfile
+     *   - Could be kotlin tests that are watched
+     *   - Tests would provide a lot of assertions and friends to verify sanity of data ...
      */
-    fun part1(input: List<String>) =
-        input.map {
-            it.split(Regex("\\s+")).map { it.toInt() }
+    fun part1(lines: List<String>) =
+        lines.map { input ->
+            input.split(Regex("\\s+")).map { it.toInt() }
         }
             .map { Pair(it.component1(), it.component2()) }
             .unzip().let {
@@ -31,6 +44,7 @@ fun main() {
                 }
             }.sum()
 
+    @Suppress("unused")
     fun part2(input: List<String>): Int {
         return input.size
     }
@@ -65,4 +79,3 @@ fun main() {
     checkTestInput()
 
 }
-
