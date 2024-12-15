@@ -3,6 +3,11 @@ plugins {
     kotlin("plugin.power-assert") version "2.1.0"
 }
 
+dependencies {
+    // This might be useful for dumping data later
+    //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3") // Replace with the latest version
+}
+
 sourceSets {
     main {
         kotlin.srcDir("src")
