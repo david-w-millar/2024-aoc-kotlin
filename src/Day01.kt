@@ -39,7 +39,7 @@ fun main() {
                 // lol - this is kinda readable
                 val listOne = it.first.sorted()
                 val listTwo = it.second.sorted()
-                listOne.zip(listTwo) { a,b ->
+                listOne.zip(listTwo) { a, b ->
                     (a - b).absoluteValue
                 }
             }.sum()
@@ -76,6 +76,13 @@ fun main() {
         println("Total distance: $totalDistance")
     }
 
+    fun solveProblem() {
+        println("::::: Solving Problem :::::")
+        val totalDistance = part1(readInput("Day01"))
+        println("Total distance: $totalDistance")
+    }
+
     checkTestInput()
+    solveProblem()
 
 }
