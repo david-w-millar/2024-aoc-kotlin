@@ -8,17 +8,22 @@ In this repository, david-w-millar is about to provide solutions for the puzzles
 If you're stuck with Kotlin-specific questions or anything related to this template, check out the following resources:
 
 - [Kotlin docs][docs]
+- [Kotlin Reference (PDF)][reference-pdf]
 - [Kotlin Slack][slack]
 - Template [issue tracker][issues]
 
 
-## Kotlin and other Resources
+## Other Resources
 
 [//]: # (TODO clean these links up)
 
-* https://kotlinlang.org/docs/home.html
-* https://play.kotlinlang.org/byExample/
+* [Kotlin Reference (PDF)][reference-pdf]
+* [Kotlin by Example][kotlin-by-example]
 * [devdocs.io](https://devdocs.io)
+
+
+* Older
+    * https://github.com/alvinj/KotlinQuickReference/blob/master/Chapters/
 
 
 ## Template Notes
@@ -33,13 +38,17 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
     You can solve the puzzle and provide an answer using the language of your choice.
 
 [aoc]: https://adventofcode.com
-[docs]: https://kotlinlang.org/docs/home.html
-[github]: https://github.com/david-w-millar
+
 [issues]: https://github.com/kotlin-hands-on/advent-of-code-kotlin-template/issues
 [kotlin]: https://kotlinlang.org
 [slack]: https://surveys.jetbrains.com/s3/kotlin-slack-sign-up
 [template]: https://github.com/kotlin-hands-on/advent-of-code-kotlin-template
-[editorconfig]: https://editorconfig.org/
+
+[docs]: https://kotlinlang.org/docs/home.html
+[reference-pdf]: https://kotlinlang.org/docs/kotlin-reference.pdf
+[kotlin-by-example]: https://play.kotlinlang.org/byExample/overview
 [kotlin-power-assert]: https://kotlinlang.org/docs/power-assert.html
 
+[github]: https://github.com/david-w-millar
 
+[editorconfig]: https://editorconfig.org/
