@@ -11,8 +11,11 @@ dependencies {
 sourceSets {
     main {
         kotlin.srcDir("src")
+        // TODO: this feels bad, man
+        resources.srcDir("src")
     }
 }
+
 
 tasks {
     wrapper {
