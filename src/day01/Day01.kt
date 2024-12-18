@@ -7,8 +7,7 @@ import kotlin.math.absoluteValue
  */
 
 fun main() {
-
-    // TODO: better name, move to utils
+    // TODO: better name, move to utils, clean up
     fun getLists(lines: List<String>) =
         // TODO: extract, move elsewhere
         lines.map { input ->
