@@ -22,10 +22,6 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 * [devdocs.io](https://devdocs.io)
 
 
-* Older
-    * https://github.com/alvinj/KotlinQuickReference/blob/master/Chapters/
-
-
 ## Template Notes
 
 * Added an [editorconfig][editorconfig] [file](.editorconfig)
