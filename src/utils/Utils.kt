@@ -78,16 +78,12 @@ data class Day(
 
     // Get inputs
     fun testFileLines() = readInput(testFileName)
-
     fun inputFileLines() = readInput(inputFileName)
 
     // Generate Part 2
-    // TODO: maybe rename this class DayPart? The semantics break down a bit. Reconsider.
+    // TODO: maybe rename this class DayPart or get rid of it? The semantics break down a bit. Reconsider.
     fun part2() = Day(day, 2)
 
-    // override fun toString() = fullName
-
     private fun padDay(day: Int) = day.toString().padStart(2, '0')
-
     private fun dayName(day: Int) = "Day${padDay(day)}"
 }
