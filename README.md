@@ -33,15 +33,6 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 * [kotlinx.benchmark][kotlinx-benchmark]
 
 
-## Scratch
-
-```kotlin
-    dependencies {
-        // This might be useful for dumping data later
-        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3") // Replace with the latest version
-    }
-```
-
 [^aoc]:
     [Advent of Code][aoc] – An annual event of Christmas-oriented programming challenges started December 2015.
     Every year since then, beginning on the first day of December, a programming puzzle is published every day for twenty-five days.
