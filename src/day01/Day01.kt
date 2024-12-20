@@ -10,14 +10,15 @@ fun main() {
     // TODO: better name, move to utils, clean up
     fun getLists(lines: List<String>) =
         // TODO: extract, move elsewhere
-        lines.map { input ->
-            input.split(Regex("\\s+")).map { it.toInt() }
-        }
-            .map { Pair(it.component1(), it.component2()) }
+        lines
+            .map { input ->
+                input.split(Regex("\\s+")).map { it.toInt() }
+            }.map { Pair(it.component1(), it.component2()) }
             .unzip()
 
     fun part1(lines: List<String>) =
-        getLists(lines).let {
+        getLists(lines)
+            .let {
                 // lol - this is kinda readable
                 val listOne = it.first.sorted()
                 val listTwo = it.second.sorted()
@@ -32,7 +33,7 @@ fun main() {
         // TODO: eliminate count
         val count = AtomicInteger(0)
         leftList.forEach {
-            count.addAndGet( it * numberCounts.getOrDefault(it,0) )
+            count.addAndGet(it * numberCounts.getOrDefault(it, 0))
         }
         return count.get()
     }
@@ -46,5 +47,4 @@ fun main() {
     problem.part2().run {
         printWorkingSolutionAfterTest(part2(inputFileLines()), part2(testFileLines()), 31)
     }
-
 }
