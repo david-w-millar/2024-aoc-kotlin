@@ -17,6 +17,11 @@ tasks {
     }
 }
 
+// TODO: Configure this for the task at hand
+ktlint {
+    coloredOutput = true
+}
+
 /**
  * Enable "Power Asserts" for all source sets in the project.
  * See https://kotlinlang.org/docs/power-assert.html
