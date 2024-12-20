@@ -1,7 +1,8 @@
 plugins {
     kotlin("jvm") version "2.1.0"
     kotlin("plugin.power-assert") version "2.1.0"
-    id("org.jetbrains.kotlinx.benchmark") version "0.4.13"
+    // Might be useful for benchmarking alternate implementations later
+    // id("org.jetbrains.kotlinx.benchmark") version "0.4.13"
 }
 
 dependencies {
