@@ -12,17 +12,19 @@ import kotlin.io.path.readText
 fun readInput(name: String) = Path("src/$name.txt").readText().trim().lines()
 
 /** The cleaner shorthand for printing output. */
-fun Any?.println() = println(this)
+// fun Any?.println() = println(this)
 
 // ------------------------- Hashing -------------------------
 
 /** Converts string to md5 hash. */
+@Suppress("unused")
 fun String.md5() =
     BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
         .toString(16)
         .padStart(32, '0')
 
 /** I really don't know why the original is deprecated */
+@Suppress("SpellCheckingInspection")
 fun Any.decapitalize() = this.toString().replaceFirstChar { it.lowercase(Locale.getDefault()) }
 
 // ------------------------- Collections -------------------------
@@ -37,21 +39,14 @@ fun <T> List<T>.elementCounts() = groupingBy { it }.eachCount()
 // ------------------------- Day Specific Output -------------------------
 
 /**
- * Aight, this is too much, way too early ¯\_(ツ)_/¯
+ * Alright, this is too much, way too early ¯\_(ツ)_/¯
  *
  * Meny assumptions...
  *
  * Conventions:
- *   - Place every day's problem in it's own package - eg: day01/Day01.kt
+ *   - Place every day's problem in its own package - eg: day01/Day01.kt
  *   - Place test input files like so - eg: day01/Day01_test.txt
  *   - Place problem input files like so - eg: day01/Day01.txt
- *
- * TODO: use templates for this
- *
- * TODO: brief example
- * TODO: Maybe just have a parent class?
- * TODO: move to own file
- * TODO: meh... decapitalize, or ignore package naming conventions. We're already ignoring a lot of conventions!
  */
 data class Day(
     val day: Int,
@@ -95,14 +90,7 @@ data class Day(
 
     // override fun toString() = fullName
 
-    private companion object {
-        fun padDay(day: Int) = day.toString().padStart(2, '0')
+    private fun padDay(day: Int) = day.toString().padStart(2, '0')
 
-        fun dayName(day: Int) = "Day${padDay(day)}"
-    }
+    private fun dayName(day: Int) = "Day${padDay(day)}"
 }
-
-// SAMs for problem parts
-// TODO: use these to avoid distinguishing between problem parts, and test cases, maybe?
-// TODO: Might declutter daily problems
-// fun interface Part<I,O> { fun part1(input: I): O }
