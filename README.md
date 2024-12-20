@@ -28,6 +28,11 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 * Added the [Power-Assert Compiler Plugin][kotlin-power-assert]
 
 
+## Maybe Checkout
+
+* [kotlinx.benchmark][kotlinx-benchmark]
+
+
 [^aoc]:
     [Advent of Code][aoc] – An annual event of Christmas-oriented programming challenges started December 2015.
     Every year since then, beginning on the first day of December, a programming puzzle is published every day for twenty-five days.
@@ -43,7 +48,9 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 [docs]: https://kotlinlang.org/docs/home.html
 [reference-pdf]: https://kotlinlang.org/docs/kotlin-reference.pdf
 [kotlin-by-example]: https://play.kotlinlang.org/byExample/overview
+
 [kotlin-power-assert]: https://kotlinlang.org/docs/power-assert.html
+[kotlinx-benchmark]: https://github.com/Kotlin/kotlinx-benchmark/tree/master
 
 [github]: https://github.com/david-w-millar
 

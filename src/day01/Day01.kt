@@ -1,4 +1,4 @@
-package day01
+package day02
 
 import utils.Day
 import utils.elementCounts
@@ -6,8 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 
 /**
- * AoC 2024 - Day 1
- * https://adventofcode.com/2024/day/1
+ * [AoC 2024 - Day 2](https://adventofcode.com/2024/day/2)
  */
 
 fun main() {

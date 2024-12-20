@@ -13,7 +13,7 @@ sourceSets {
     main {
         kotlin.srcDir("src")
         // TODO: this feels bad, man
-        resources.srcDir("src")
+        resources.srcDir("src/**/*.txt")
     }
 }
 
