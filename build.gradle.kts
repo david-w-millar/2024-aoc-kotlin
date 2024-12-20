@@ -1,13 +1,7 @@
 plugins {
     kotlin("jvm") version "2.1.0"
     kotlin("plugin.power-assert") version "2.1.0"
-    // Might be useful for benchmarking alternate implementations later
-    // id("org.jetbrains.kotlinx.benchmark") version "0.4.13"
-}
-
-dependencies {
-    // This might be useful for dumping data later
-    // implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3") // Replace with the latest version
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
 }
 
 sourceSets {
