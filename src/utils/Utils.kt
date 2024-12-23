@@ -32,3 +32,6 @@ fun Any.decapitalize() = this.toString().replaceFirstChar { it.lowercase(Locale.
  * There must be a better way...
  */
 fun <T> List<T>.elementCounts() = groupingBy { it }.eachCount()
+
+//fun String.toListOfInts() = this.trim().split(regex = """\s+""".toRegex()).map { it.toInt() }
+//fun String.toListOfInts() = this.trim().split(regex = """\s+""".toRegex())

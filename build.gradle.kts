@@ -1,3 +1,5 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     kotlin("jvm") version "2.1.0"
     kotlin("plugin.power-assert") version "2.1.0"
@@ -19,7 +21,17 @@ tasks {
 
 // TODO: Configure this for the task at hand
 ktlint {
+    debug = true
+    verbose = true
     coloredOutput = true
+    // Why not?  ALL THE REPORTERS!
+    reporters {
+        reporter(reporterType = ReporterType.HTML)
+        reporter(reporterType = ReporterType.JSON)
+        reporter(reporterType = ReporterType.PLAIN)
+        reporter(reporterType = ReporterType.SARIF)
+        reporter(reporterType = ReporterType.CHECKSTYLE)
+    }
 }
 
 /**
