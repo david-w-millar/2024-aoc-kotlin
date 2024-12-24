@@ -1,6 +1,6 @@
 # 2024 Advent of Code Solutions in Kotlin
 
-Welcome to the Advent of Code[^aoc] Kotlin project created by [david-w-millar][github]
+Welcome to the Advent of Code[^aoc] Kotlin project created by [david-w-millar][dwm-github]
 using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
 
 In this repository, david-w-millar is about to provide solutions for the puzzles using [Kotlin][kotlin] language.
@@ -25,12 +25,13 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 ## Template Notes
 
 * Added an [editorconfig][editorconfig] [file](.editorconfig)
-* Added the [Power-Assert Compiler Plugin][kotlin-power-assert]
+* Added the [Power-Assert Compiler Plugin][kotlin-power-assert] in order to get details regarding assertions, cheks, etc.
+* Added a [ktlint][ktlint-plugin] to keep things clean-ish.  Probably a mistake in this context.
 
 
 ## Maybe Checkout
 
-* [kotlinx.benchmark][kotlinx-benchmark]
+* [kotlinx.benchmark][kotlinx-benchmark] to benchmark different implementations down the line.
 
 
 [^aoc]:
@@ -52,6 +53,7 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 [kotlin-power-assert]: https://kotlinlang.org/docs/power-assert.html
 [kotlinx-benchmark]: https://github.com/Kotlin/kotlinx-benchmark/tree/master
 
-[github]: https://github.com/david-w-millar
-
 [editorconfig]: https://editorconfig.org/
+[ktlint-plugin]: https://github.com/JLLeitschuh/ktlint-gradle
+
+[dwm-github]: https://github.com/david-w-millar

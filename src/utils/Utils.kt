@@ -14,14 +14,12 @@ fun readInput(name: String) = Path("src/$name.txt").readText().trim().lines()
 // ------------------------- Hashing -------------------------
 
 /** Converts string to md5 hash. */
-@Suppress("unused")
 fun String.md5() =
     BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
         .toString(16)
         .padStart(32, '0')
 
 /** I really don't know why the original is deprecated */
-@Suppress("SpellCheckingInspection")
 fun Any.decapitalize() = this.toString().replaceFirstChar { it.lowercase(Locale.getDefault()) }
 
 // ------------------------- Collections -------------------------
