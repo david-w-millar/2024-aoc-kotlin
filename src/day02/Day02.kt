@@ -80,27 +80,41 @@ fun main() {
         return safeCount.get()
     }
 
-    fun part2(lines: List<String>) {
-        val safeCount = AtomicInteger(0)
-        lines.forEach { line ->
-            line
-                .toListOfInts()
-                .run {
-                    if(
-                        isStrictlyMonotonic()
-                        &&
-                        !containsDuplicates()
-                        &&
-                        sorted().isStrictlyIncreasingByAtMost()
-                    ) {
-                        safeCount.getAndIncrement()
-                    }
-                }
+    fun getReportFromString(string: String) = string.toListOfInts()
+    fun getReportsFromInput(input: List<String>) = input.map { getReportFromString(it) }
+
+
+    fun List<Int>.isMostlySave() {
+        windowed(2, 1)
+    }
+}
+
+    data class Reoort(val levels: List<Int>) {
+        private val jawn = 0
+
+        fun isSafeReport() {
+            val isTotallySafe = levels.isSafeReport()
+            val isMostlySafe = levels.isMostlySafe()
         }
+
+
     }
 
-    println("::: Part1 Test: ${part1(readInput("day02/Day02_test"))}")
-    println("::: Part1     : ${part1(readInput("day02/Day02"))}")
+    fun part2(input: List<String>) {
+        val safeCount = AtomicInteger(0)
+        println(getReportsFromInput(input))
+        val reports = getReportsFromInput(input).map { Report(it) }
+    }
+
+
+
+    }
+
+    println(":::")
+    println(part2(readInput("day02/Day02_test")))
+
+//    println("::: Part1 Test: ${part1(readInput("day02/Day02_test"))}")
+//    println("::: Part1     : ${part1(readInput("day02/Day02"))}")
 
 //    println("::: Part2 Test: ${part1(readInput("day02/Day02_test"))}")
 //    println("::: Part2     : ${part1(readInput("day02/Day02"))}")
