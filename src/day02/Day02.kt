@@ -33,37 +33,28 @@ fun main() {
         return true
     }
 
-    fun List<Int>.isSafeReport() =
+    fun List<Int>.isSafeReport(): Boolean =
         isStrictlyMonotonic() &&
             !containsDuplicates() &&
             sorted().isStrictlyIncreasingByAtMost()
 
     fun part1(reports: List<List<Int>>) = reports.count { it.isSafeReport() }
 
-    fun List<Int>.getSubsets() : List<List<Int>> {
-        val subsets = mutableListOf<Int>()
-        val jawn = 0 .. (this.size - 1)
-        jawn.forEach { println(it)}
-//        println(0 .. this.size)
-//        for(i in 0 .. this.size) {
-//            println(this.get(i))
-//        }
-
-        return listOf(listOf())
+    fun getReportsWithOneLevelRemoved(list: List<Int>): List<List<Int>> {
+        val subsets =
+            buildList {
+                add(list)
+                for(i in list.indices) {
+                    add(list.filterIndexed { removeIndex, _ -> removeIndex != i })
+                }
+            }
+        return subsets
     }
 
-    fun part2(reports: List<List<Int>>) : Int {
-
-        val report = listOf(7,6,4,2,1)
-        println(report.getSubsets())
-
-        return reports.count {
-            it.getSubsets().any { report -> report.isSafeReport() }
+    fun part2(reports: List<List<Int>>) =
+        reports.count {
+            getReportsWithOneLevelRemoved(it).any { report -> report.isSafeReport() }
         }
-    }
-
-//    check(part1("day02/Day02_test".toReports()) == 3)
-//    check(part2("day02/Day02_test".toReports()) == 4)
 
     val partOneSolution = part1("day02/Day02_test".toReports())
     check(partOneSolution == 2)
@@ -71,6 +62,7 @@ fun main() {
     println("::: Part1     : ${part1("day02/Day02".toReports())}")
 
     val partTwoTest = part2("day02/Day02_test".toReports())
+    check(partTwoTest == 4)
     println("::: Part2 Test: $partTwoTest")
     println("::: Part2     : ${part2("day02/Day02".toReports())}")
 }
