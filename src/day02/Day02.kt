@@ -1,14 +1,15 @@
 package day02
 
 import utils.readInput
-import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * [AoC 2024 - Day 2](https://adventofcode.com/2024/day/2)
  */
 fun main() {
 
-    fun String.toListOfInts(regex: Regex = """\s+""".toRegex()) = trim().split(regex).map { it.toInt() }
+    fun String.toListOfInts(regex: Regex = """\s+""".toRegex()): List<Int> = trim().split(regex).map { it.toInt() }
+    fun String.toLines() = readInput(this)
+    fun String.toReports() = this.toLines().map { it.toListOfInts() }
 
     // TODO: this shouldn't be necessary
     fun List<Int>.containsDuplicates() = (toSet().size != size)
@@ -17,7 +18,6 @@ fun main() {
         windowed(2,1).all {
             (it.first() < it.last()).and(it.last() - it.first() <= maxStep)
         }
-
 
     /** Could use a better name... */
     fun List<Int>.isStrictlyMonotonic(): Boolean {
@@ -38,28 +38,39 @@ fun main() {
             !containsDuplicates() &&
             sorted().isStrictlyIncreasingByAtMost()
 
-    fun part1(lines: List<String>): Int {
-        val safeCount = AtomicInteger(0)
-        lines.forEach { line ->
-            line
-                .toListOfInts()
-                // TODO: use .count()
-                .run {
-                    if (isSafeReport()) {
-                        safeCount.getAndIncrement()
-                    }
-                }
-        }
-        return safeCount.get()
+    fun part1(reports: List<List<Int>>) = reports.count { it.isSafeReport() }
+
+    fun List<Int>.getSubsets() : List<List<Int>> {
+        val subsets = mutableListOf<Int>()
+        val jawn = 0 .. (this.size - 1)
+        jawn.forEach { println(it)}
+//        println(0 .. this.size)
+//        for(i in 0 .. this.size) {
+//            println(this.get(i))
+//        }
+
+        return listOf(listOf())
     }
 
-    fun part2(input: List<String>) = "TODO ${input.size}"
+    fun part2(reports: List<List<Int>>) : Int {
 
-    val partOneSolution = part1(readInput("day02/Day02_test"))
+        val report = listOf(7,6,4,2,1)
+        println(report.getSubsets())
+
+        return reports.count {
+            it.getSubsets().any { report -> report.isSafeReport() }
+        }
+    }
+
+//    check(part1("day02/Day02_test".toReports()) == 3)
+//    check(part2("day02/Day02_test".toReports()) == 4)
+
+    val partOneSolution = part1("day02/Day02_test".toReports())
     check(partOneSolution == 2)
     println("::: Part1 Test: $partOneSolution")
-    println("::: Part1     : ${part1(readInput("day02/Day02"))}")
+    println("::: Part1     : ${part1("day02/Day02".toReports())}")
 
-    println("::: Part2 Test: ${part2(readInput("day02/Day02_test"))}")
-    println("::: Part2     : ${part2(readInput("day02/Day02"))}")
+    val partTwoTest = part2("day02/Day02_test".toReports())
+    println("::: Part2 Test: $partTwoTest")
+    println("::: Part2     : ${part2("day02/Day02".toReports())}")
 }
