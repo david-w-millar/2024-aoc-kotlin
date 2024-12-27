@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 // import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
@@ -23,14 +25,26 @@ tasks {
     }
 }
 
+
 /**
  * Enable "Power Asserts" for all source sets in the project.
  * See https://kotlinlang.org/docs/power-assert.html
+ *
+ * NOTE: kotlin.assert only works in tests by default,
+ *       without additional configuration
  */
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 powerAssert {
     includedSourceSets = sourceSets.map { it.name }
-    functions = listOf("kotlin.assert", "kotlin.check", "kotlin.require")
+    functions =
+        listOf(
+            "kotlin.assert",
+            "kotlin.check",
+            "kotlin.require",
+            "kotlin.test.assertTrue",
+            "kotlin.test.assertEquals",
+            "kotlin.test.assertNull"
+        )
 }
 
 

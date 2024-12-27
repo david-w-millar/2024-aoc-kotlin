@@ -10,6 +10,7 @@ fun main() {
 
     fun String.toListOfInts(regex: Regex = """\s+""".toRegex()) = trim().split(regex).map { it.toInt() }
 
+    // TODO: this shouldn't be necessary
     fun List<Int>.containsDuplicates() = (toSet().size != size)
 
     fun List<Int>.isStrictlyIncreasingByAtMost(maxStep: Int = 3) =
@@ -52,15 +53,13 @@ fun main() {
         return safeCount.get()
     }
 
-    fun part2(input: List<String>) = "TODO"
+    fun part2(input: List<String>) = "TODO ${input.size}"
 
-
-    println(":::")
-    println(part2(readInput("day02/Day02_test")))
-
-    println("::: Part1 Test: ${part1(readInput("day02/Day02_test"))}")
+    val partOneSolution = part1(readInput("day02/Day02_test"))
+    check(partOneSolution == 2)
+    println("::: Part1 Test: $partOneSolution")
     println("::: Part1     : ${part1(readInput("day02/Day02"))}")
 
-    println("::: Part2 Test: ${part1(readInput("day02/Day02_test"))}")
-    println("::: Part2     : ${part1(readInput("day02/Day02"))}")
+    println("::: Part2 Test: ${part2(readInput("day02/Day02_test"))}")
+    println("::: Part2     : ${part2(readInput("day02/Day02"))}")
 }
