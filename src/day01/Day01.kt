@@ -10,9 +10,7 @@ import kotlin.math.absoluteValue
  */
 
 fun main() {
-    // TODO: better name, move to utils, clean up
     fun getLists(lines: List<String>) =
-        // TODO: extract, move elsewhere
         lines
             .map { input ->
                 input.split(Regex("\\s+")).map { it.toInt() }
@@ -33,7 +31,6 @@ fun main() {
     fun part2(input: List<String>): Int {
         val (leftList, rightList) = getLists(input)
         val numberCounts = rightList.elementCounts()
-        // TODO: eliminate count
         val count = AtomicInteger(0)
         leftList.forEach {
             count.addAndGet(it * numberCounts.getOrDefault(it, 0))
@@ -41,13 +38,12 @@ fun main() {
         return count.get()
     }
 
-    val problem = Day(1)
-
+    val problem = Day(1, 11)
     problem.run {
-        printWorkingSolutionAfterTest(part1(inputFileLines()), part1(testFileLines()), 11)
+        printWorkingSolutionAfterTest(part1(getInputLines()), part1(getTestInputLines()))
     }
 
-    problem.part2().run {
-        printWorkingSolutionAfterTest(part2(inputFileLines()), part2(testFileLines()), 31)
+    problem.part2(31).run {
+        printWorkingSolutionAfterTest(part2(getInputLines()), part2(getTestInputLines()))
     }
 }

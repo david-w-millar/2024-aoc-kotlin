@@ -7,48 +7,47 @@ package utils
  *
  * Conventions:
  *   - Place every day's problem in its own package - eg: day01/Day01.kt
- *   - Place test input files like so - eg: day01/Day01_test.txt
- *   - Place problem input files like so - eg: day01/Day01.txt
+ *   - Test input files: day01/Day01_test.txt
+ *   - Problem input files: day01/Day01.txt
  */
-data class Day(
-    val day: Int,
+data class Day<T,S>(
+    val day: T,
+    val testSolution: S,
     val part: Int = 1,
 ) {
-    private val dayName = dayName(day)
+    private val paddedDay = getPaddedDay(day)
+
+    private val dayName = "Day $paddedDay"
     private val partName = "Part $part"
     private val fullName = "$dayName $partName"
 
-    // Conventions
-    private val testFileName = "${dayName.decapitalize()}/${dayName}_test"
-    private val inputFileName = "${dayName.decapitalize()}/$dayName"
+    private val testInputFileName = "src/day$paddedDay/Day${paddedDay}_test.txt"
+    private val inputFileName = "src/day$paddedDay/Day$paddedDay.txt"
 
-    //  Check solutions - might want to make these more public for faster dev loops.
-    private fun checkTestSolution(
-        result: Any,
-        expected: Any,
-    ) = check(result == expected) { testFailureMessage() }
+    fun getTestInputLines() = readInput(testInputFileName)
+    fun getInputLines() = readInput(inputFileName)
 
+    //  ----- Output Formatting -----
+    private fun testFailureMessage() = "::::: $fullName Test Failed."
     private fun printWorkingSolution(result: Any) = println("::::: $fullName Working Solution: $result")
+
+    //  Check Test Solutions
+    private fun checkTestSolution(result: Any) = check(result == testSolution) { testFailureMessage() }
 
     fun printWorkingSolutionAfterTest(
         result: Any,
         testResult: Any,
-        testExpected: Any,
-    ) = checkTestSolution(testResult, testExpected).also {
+    ) = checkTestSolution(testResult).also {
         printWorkingSolution(result)
     }
 
-    // Generate failure messages
-    private fun testFailureMessage() = "::::: $fullName Test Failed."
-
-    // Get inputs
-    fun testFileLines() = readInput(testFileName)
-    fun inputFileLines() = readInput(inputFileName)
-
     // Generate Part 2
-    // TODO: maybe rename this class DayPart or get rid of it? The semantics break down a bit. Reconsider.
-    fun part2() = Day(day, 2)
+    fun <S> part2(testSolution: S) = Day(day, testSolution, 2)
 
-    private fun padDay(day: Int) = day.toString().padStart(2, '0')
-    private fun dayName(day: Int) = "Day${padDay(day)}"
+    private companion object {
+        fun <T> getPaddedDay(day: T): String {
+            check((day is Int) || (day is String)) { "Day must be either a String or an Int" }
+            return day.toString().padStart(2,'0')
+        }
+    }
 }

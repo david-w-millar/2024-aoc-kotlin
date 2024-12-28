@@ -9,7 +9,7 @@ import kotlin.io.path.readText
 // ------------------------- IO -------------------------
 
 /** Reads lines from the given input txt file. */
-fun readInput(name: String) = Path("src/$name.txt").readText().trim().lines()
+fun readInput(name: String) = Path(name).readText().trim().lines()
 
 // ------------------------- Hashing -------------------------
 
@@ -31,5 +31,14 @@ fun Any.decapitalize() = this.toString().replaceFirstChar { it.lowercase(Locale.
  */
 fun <T> List<T>.elementCounts() = groupingBy { it }.eachCount()
 
-//fun String.toListOfInts() = this.trim().split(regex = """\s+""".toRegex()).map { it.toInt() }
-//fun String.toListOfInts() = this.trim().split(regex = """\s+""".toRegex())
+// ------------------------- Day Related Things -------------------------
+
+//fun <T> getPaddedDay(day: T): String {
+//    check((day is Int) || (day is String)) { "Day must be either a String or an Int" }
+//    return day.toString().padStart(2,'0')
+//}
+//
+//fun <T> getTestInputFile(day: T) = "src/day${getPaddedDay(day)}/Day${getPaddedDay(day)}_test.txt"
+//fun <T> getInputFile(day: T) = "src/day${getPaddedDay(day)}/Day${getPaddedDay(day)}.txt"
+//fun <T> getTestInput(day: T) = readInput(getTestInputFile(day))
+//fun <T> getInput(day: T) = readInput(getInputFile(day))

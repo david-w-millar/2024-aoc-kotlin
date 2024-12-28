@@ -56,13 +56,13 @@ fun main() {
             getReportsWithOneLevelRemoved(it).any { report -> report.isSafeReport() }
         }
 
-    val partOneSolution = part1("day02/Day02_test".toReports())
+    val partOneSolution = part1("src/day02/Day02_test.txt".toReports())
     check(partOneSolution == 2)
     println("::: Part1 Test: $partOneSolution")
-    println("::: Part1     : ${part1("day02/Day02".toReports())}")
+    println("::: Part1     : ${part1("src/day02/Day02.txt".toReports())}")
 
-    val partTwoTest = part2("day02/Day02_test".toReports())
+    val partTwoTest = part2("src/day02/Day02_test.txt".toReports())
     check(partTwoTest == 4)
     println("::: Part2 Test: $partTwoTest")
-    println("::: Part2     : ${part2("day02/Day02".toReports())}")
+    println("::: Part2     : ${part2("src/day02/Day02.txt".toReports())}")
 }
