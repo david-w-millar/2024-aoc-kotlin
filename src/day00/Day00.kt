@@ -1,4 +1,4 @@
-package day03
+package day00
 
 import utils.Day
 
@@ -7,7 +7,7 @@ import utils.Day
  * [AoC 2024 - Day 3](https://adventofcode.com/2024/day/2)
  */
 fun main() {
-    val day = Day(3, "test solution")
+    val day = Day(0, "test solution")
 
     fun part1(lines: List<String>) {
         println(lines)
@@ -23,5 +23,4 @@ fun main() {
             part2(day.getTestInputLines())
         )
     }
-
 }
