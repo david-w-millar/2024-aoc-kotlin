@@ -1,6 +1,5 @@
 package day03
 
-import day03.MulExamples.example_50
 import utils.Day
 import utils.readInput
 
@@ -9,11 +8,10 @@ fun main() {
 
     val mulInstructionRegex = """mul\((\d+),(\d+)\)""".toRegex()
 
-    fun getValidInstructions(lines: List<String>): List<String> {
-        return mulInstructionRegex.findAll(lines.joinToString()).map { it.value }.toList()
-    }
+    fun getValidInstructions(lines: List<String>): List<String> =
+        mulInstructionRegex.findAll(lines.joinToString()).map { it.value }.toList()
 
-    fun getMultiplicands(instruction: String) : Pair<Int,Int> {
+    fun getMultiplicands(instruction: String): Pair<Int,Int> {
         val (x,y) =
             mulInstructionRegex
                 .matchEntire(
@@ -22,13 +20,9 @@ fun main() {
         return Pair(x.toInt(), y.toInt())
     }
 
-    fun getMulResult(instruction: String) : Int {
-        return getMultiplicands(instruction).let { it.first * it.second }
-    }
+    fun getMulResult(instruction: String): Int = getMultiplicands(instruction).let { it.first * it.second }
 
-    fun part1(lines: List<String>): Int {
-        return getValidInstructions(lines).sumOf { getMulResult(it) }
-    }
+    fun part1(lines: List<String>): Int = getValidInstructions(lines).sumOf { getMulResult(it) }
 
     //val mulInstructionRegex = """mul\((\d+),(\d+)\)""".toRegex()
     val dontDoBlock = """don't\(\).*do\(\)""".toRegex()
@@ -51,7 +45,7 @@ fun main() {
     fun part2(
         input: String,
         debug: Boolean = false,
-    ) = part2(listOf(input), debug)
+    ): Int = part2(listOf(input), debug)
 
     check(part1(day.getTestInputLines()) == 161)
     println("::: Part 1 Solution: " + part1(day.getInputLines()))
@@ -64,5 +58,6 @@ fun main() {
 
     val part2Solution = part2(day.getInputLines())
     println("::: Part 2 Solution: $part2Solution")
+    println(part2(day.getInputLines().joinToString("")))
 
 }
