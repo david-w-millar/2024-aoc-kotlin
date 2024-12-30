@@ -31,14 +31,3 @@ fun Any.decapitalize() = this.toString().replaceFirstChar { it.lowercase(Locale.
  */
 fun <T> List<T>.elementCounts() = groupingBy { it }.eachCount()
 
-// ------------------------- Day Related Things -------------------------
-
-//fun <T> getPaddedDay(day: T): String {
-//    check((day is Int) || (day is String)) { "Day must be either a String or an Int" }
-//    return day.toString().padStart(2,'0')
-//}
-//
-//fun <T> getTestInputFile(day: T) = "src/day${getPaddedDay(day)}/Day${getPaddedDay(day)}_test.txt"
-//fun <T> getInputFile(day: T) = "src/day${getPaddedDay(day)}/Day${getPaddedDay(day)}.txt"
-//fun <T> getTestInput(day: T) = readInput(getTestInputFile(day))
-//fun <T> getInput(day: T) = readInput(getInputFile(day))
