@@ -1,7 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-// import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
-
 plugins {
     kotlin("jvm") version "2.1.0"
     kotlin("plugin.power-assert") version "2.1.0"
@@ -22,6 +18,12 @@ sourceSets {
 tasks {
     wrapper {
         gradleVersion = "8.11.1"
+    }
+}
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xmulti-dollar-interpolation")
     }
 }
 
