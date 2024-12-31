@@ -8,6 +8,13 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    // Pretty Colors!
+    implementation("com.github.ajalt.mordant:mordant-core:3.0.1")
+    implementation("com.github.ajalt.mordant:mordant:3.0.1")
+    implementation("com.github.ajalt.mordant:mordant-markdown:3.0.1")
+}
+
 sourceSets {
     main {
         kotlin.srcDir("src")
