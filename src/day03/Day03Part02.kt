@@ -1,15 +1,17 @@
 package day03
 
-import utils.readInput
-
 fun main() {
 
-    val exampleInput = """xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"""
-    val input = $$"xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))}"
+    val exampleMulInput = """xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"""
+    val exampleConditionalInput = $$"xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))}"
 
     val MUL_REGEX = """mul\((\d+),(\d+)\)""".toRegex()
     val DONT_REGEX = """don't\(\)""".toRegex()
     val DO_REGEX = """do\(\)""".toRegex()
+
+    fun getDontInstructions(input: String) = DONT_REGEX.findAll(input).toList()
+    fun getDoInstructions(input: String) = DO_REGEX.findAll(input).toList()
+    fun getMulInstructions(input: String) = MUL_REGEX.findAll(input).toList()
 
     fun part2(
         lines: List<String>,
@@ -17,14 +19,21 @@ fun main() {
     ): Int {
         val input = lines.joinToString()
         println("::: Input:                $input")
+        val dontMatches = getDontInstructions(input)
+        val doMatches = getDoInstructions(input)
+        val mulMatches = getMulInstructions(input)
 
-        val dontMatches = DONT_REGEX.findAll(input)
-        val doMatches = DO_REGEX.findAll(input)
-        val mulMatches = MUL_REGEX.findAll(input)
+        println("::::: don't Matches")
+        dontMatches.forEachIndexed { i, mr ->
+            println("::: Match $i")
+            println(i)
+            println(mr)
+        }
 
-        println(mulMatches)
-        println(dontMatches)
+        println("::::: do Matches")
         println(doMatches)
+
+        println("::::: Mul Matches")
         println(mulMatches)
 
         return 0
@@ -38,8 +47,9 @@ fun main() {
 //    val part2TestInput = readInput("src/day03/Day03_part2_test.txt")
 //    check(part2(part2TestInput, debug = false) == 48)
 
-    println("::: Part 2 Test Solution: input: ${part2(input)}")
-    println("::: Part 2 Test Solution: input: ${part2(exampleInput)}")
+    //println("::: Part 2 Test Solution: input: ${part2(input)}")
+    println("\n\n::: Part 2 Test Solution: input: ${part2(exampleMulInput)}")
+    println("\n\n::: Part 2 Test Solution: input: ${part2(exampleConditionalInput)}")
 
 }
 
