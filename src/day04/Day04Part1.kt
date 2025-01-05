@@ -4,66 +4,45 @@ package day04
 
 import com.github.ajalt.mordant.rendering.TextColors.*
 import com.github.ajalt.mordant.rendering.TextStyles.*
+import day04.WordSearch.Companion.countForwardAndBackwards
 import day04.WordSearch.Companion.rotate45Raw
 import utils.Day
 import java.util.concurrent.atomic.AtomicInteger
 
+/**
+ * This is disgusting. lol
+ * Move reusable parts elsewhere.
+ * Make classes and functions coherent.
+ * Eliminate repetition.
+ */
 fun main() {
     val day = Day(4, "test solution")
 
-    val testInput = day.getTestInputLines()
-    val input = day.getInputLines()
+    fun solveProblem(lines: List<String>): Int {
+        val original = lines
+        val rotated45Raw = rotate45Raw(original).map { it.joinToString("") }
+        val rotated90Raw = rotate45Raw(rotated45Raw).map { it.joinToString("") }
+        val rotated135Raw = rotate45Raw(rotated90Raw).map { it.joinToString("") }
 
-    fun part1() {
-        check(WordSearch(testInput).computeResult() == 18)
-        println("::: Solution: ${WordSearch(input).computeResult()}")
+        val r45 = Rotateable(rotated45Raw).asCleanList()
+        val r90 = Rotateable(rotated90Raw).asCleanList()
+        val r135 = Rotateable(rotated135Raw).asCleanList()
+
+        val toCheck = listOf(original, r45, r90, r135)
+        val sum = toCheck.sumOf { countForwardAndBackwards(it) }
+        println(sum)
+        return sum
     }
-    //fun part2(lines: List<String>) { }
 
-    check(WordSearch(testInput).computeResult() == 18)
-    //part1()
+    check(solveProblem(day.getTestInputLines()) == 18)
+    println(solveProblem(day.getInputLines()))
+}
 
-    val testInputA = listOf("ABC", "DEF", "GHI")
-    val testInputN = listOf("123", "456", "789")
-    val wsA = WordSearch(testInputA)
-    val wsN = WordSearch(testInputN)
-
-    println("\n::: Original")
-    wsA.prettyPrint()
-
-    println("\n::: Rotated 45 Raw")
-    val rotatedRaw = rotate45Raw(testInputA)
-    println(rotatedRaw)
-    rotatedRaw.forEach { println(it.joinToString("")) }
-    println("---------------------")
-
-    println("\n::: Rotated 45")
-    val rotated = wsA.rotate45()
-    rotated.forEach { println(it) }
-    println("---------------------")
-
-    println("\n::: Rotated 90 Raw")
-    val rotatedAsList = rotatedRaw.map { it.joinToString("") }
-    val rotated90Raw = rotate45Raw(rotatedAsList)
-    //rotated90Raw.forEach { println(it) }
-    val rotated90RawAsLines = rotated90Raw.map { it.joinToString("")}
-    rotated90RawAsLines.forEach { println(it) }
-
-    println("\n::: Rotated 135 Raw")
-    val rotated135Raw = rotate45Raw(rotated90RawAsLines)
-    //println(rotated135Raw)
-    println("--------------------------")
-    rotated135Raw.forEach { println(it) }
-    val rotated135AsLines = rotated135Raw.map { it.joinToString("") }
-    //println(rotated135AsLines)
-    println("--------------------------")
-    rotated135AsLines.forEach { println(it) }
-
-    println("\n::: Rotated 180 Raw")
-    val rotated180Raw = rotate45Raw(rotated135AsLines)
-    rotated180Raw.forEach { println(it) }
-
-
+data class Rotateable(
+    val lines: List<String>
+) {
+    fun prettyPrint() = lines.forEach { println(it) }
+    fun asCleanList() = lines.map { it.replace(".","") }
 }
 
 /**
