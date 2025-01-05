@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.1.0"
     kotlin("plugin.power-assert") version "2.1.0"
+    // id("org.jetbrains.kotlinx.dataframe") version "0.15.0"
     // id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
 }
 
@@ -13,6 +14,8 @@ dependencies {
     implementation("com.github.ajalt.mordant:mordant-core:3.0.1")
     implementation("com.github.ajalt.mordant:mordant:3.0.1")
     implementation("com.github.ajalt.mordant:mordant-markdown:3.0.1")
+
+    //implementation("org.jetbrains.kotlinx:dataframe:0.15.0")
 }
 
 sourceSets {
