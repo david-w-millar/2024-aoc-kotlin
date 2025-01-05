@@ -4,6 +4,7 @@ package day04
 
 import com.github.ajalt.mordant.rendering.TextColors.*
 import com.github.ajalt.mordant.rendering.TextStyles.*
+import day04.WordSearch.Companion.rotate45Raw
 import utils.Day
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -17,10 +18,51 @@ fun main() {
         check(WordSearch(testInput).computeResult() == 18)
         println("::: Solution: ${WordSearch(input).computeResult()}")
     }
-
     //fun part2(lines: List<String>) { }
 
-    part1()
+    check(WordSearch(testInput).computeResult() == 18)
+    //part1()
+
+    val testInputA = listOf("ABC", "DEF", "GHI")
+    val testInputN = listOf("123", "456", "789")
+    val wsA = WordSearch(testInputA)
+    val wsN = WordSearch(testInputN)
+
+    println("\n::: Original")
+    wsA.prettyPrint()
+
+    println("\n::: Rotated 45 Raw")
+    val rotatedRaw = rotate45Raw(testInputA)
+    println(rotatedRaw)
+    rotatedRaw.forEach { println(it.joinToString("")) }
+    println("---------------------")
+
+    println("\n::: Rotated 45")
+    val rotated = wsA.rotate45()
+    rotated.forEach { println(it) }
+    println("---------------------")
+
+    println("\n::: Rotated 90 Raw")
+    val rotatedAsList = rotatedRaw.map { it.joinToString("") }
+    val rotated90Raw = rotate45Raw(rotatedAsList)
+    //rotated90Raw.forEach { println(it) }
+    val rotated90RawAsLines = rotated90Raw.map { it.joinToString("")}
+    rotated90RawAsLines.forEach { println(it) }
+
+    println("\n::: Rotated 135 Raw")
+    val rotated135Raw = rotate45Raw(rotated90RawAsLines)
+    //println(rotated135Raw)
+    println("--------------------------")
+    rotated135Raw.forEach { println(it) }
+    val rotated135AsLines = rotated135Raw.map { it.joinToString("") }
+    //println(rotated135AsLines)
+    println("--------------------------")
+    rotated135AsLines.forEach { println(it) }
+
+    println("\n::: Rotated 180 Raw")
+    val rotated180Raw = rotate45Raw(rotated135AsLines)
+    rotated180Raw.forEach { println(it) }
+
 
 }
 
@@ -32,7 +74,9 @@ data class WordSearch(
 ) {
     init {
         val dimensions = (listOf(lines.size) + lines.map { it.length })
-        check(dimensions.distinct().count() == 1) { "Invalid wordsearch dimensions.  Expected a square, got $dimensions" }
+        check(
+            dimensions.distinct().count() == 1
+        ) { "Invalid WordSearch dimensions.  Expected a square, got $dimensions" }
     }
 
     fun computeResult(debug: Boolean = false): Int {
@@ -63,21 +107,7 @@ data class WordSearch(
 
     fun countForwardAndBackwards(debug: Boolean = false) = countForwardAndBackwards(lines, debug)
 
-    fun rotate45(clean: Boolean = true): List<String> {
-        val n = lines.size
-        val diamond = MutableList(2 * n - 1) { MutableList<Char?>(2 * n - 1) { FILLER_CHAR } }
-        IntRange(0, n - 1).forEach { i ->
-            IntRange(0, n - 1).forEach { j ->
-                diamond[i + j][n - 1 - i + j] = lines[i][j]
-            }
-        }
-        return diamond.map { it.joinToString("").replace(FILLER_CHAR.toString(), "") }.toList()
-    }
-
-    fun cleanDiamond(lines: List<String>) {
-        lines.map { FILLER_CHAR_REGEX.replace(it) { "" } }
-    }
-
+    fun rotate45() = rotate45(lines)
 
     fun rotated90() = WordSearch(rotate90())
     fun rotate90(): List<String> {
@@ -108,6 +138,22 @@ data class WordSearch(
             lines.forEach { count.getAndAdd(XMAS_REGEX.findAll(it.reversed()).toList().size) }
             if (debug) println("::: Forwards and backwards: $count")
             return count.toInt()
+        }
+
+        fun rotate45(lines: List<String>): List<String> {
+            val diamond = rotate45Raw(lines)
+            return diamond.map { it.joinToString("").replace(FILLER_CHAR.toString(), "") }
+        }
+
+        fun rotate45Raw(lines: List<String>): MutableList<MutableList<Char>> {
+            val n = lines.size
+            val diamond = MutableList(2 * n - 1) { MutableList<Char>(2 * n - 1) { FILLER_CHAR } }
+            IntRange(0, n - 1).forEach { i ->
+                IntRange(0, n - 1).forEach { j ->
+                    diamond[i + j][n - 1 - i + j] = lines[i][j]
+                }
+            }
+            return diamond
         }
     }
 }
