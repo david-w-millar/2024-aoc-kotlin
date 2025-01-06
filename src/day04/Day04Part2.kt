@@ -1,62 +1,72 @@
-@file:Suppress("ktlint:standard:no-wildcard-imports")
+@file:Suppress("ktlint:standard:statement-wrapping")
 
 package day04
 
-import com.github.ajalt.mordant.rendering.TextColors.*
-import com.github.ajalt.mordant.rendering.TextStyles.*
-import day04.WordSearch.Companion.countForwardAndBackwards
-import day04.WordSearch.Companion.rotate45Raw
-import utils.Day
+import com.github.ajalt.mordant.rendering.TextColors.blue
+import com.github.ajalt.mordant.rendering.TextColors.green
+import com.github.ajalt.mordant.rendering.TextStyles.bold
+import day04.Day04Inputs.testInputA4
+import utils.checkIsASquare
+import utils.prettyPrintAsGrid
 import java.util.concurrent.atomic.AtomicInteger
 
-/**
- * This is disgusting. lol
- * Move reusable parts elsewhere.
- * Make classes and functions coherent.
- * Eliminate repetition.
- */
+
 fun main() {
-    val day = Day(4, "test solution")
+    val testInput = testInputA4
+    println(testInput)
+    testInput.prettyPrintAsGrid()
 
-    data class Rotateable(
-        val lines: List<String>
-    ) {
-        fun prettyPrint() = lines.forEach { println(it) }
-        fun asCleanList() = lines.map { it.replace(".","") }
-    }
+    val grid = CharGrid(testInput)
+    val grids = grid.enumerate3x3Grids()
+    println(grids)
+    grids.forEach { it.prettyPrintAsGrid() }
 
-    fun solveProblem(lines: List<String>): Int {
-        val original = lines
-        val rotated45Raw = rotate45Raw(original).map { it.joinToString("") }
-        val rotated90Raw = rotate45Raw(rotated45Raw).map { it.joinToString("") }
-        val rotated135Raw = rotate45Raw(rotated90Raw).map { it.joinToString("") }
-
-        val r45 = Rotateable(rotated45Raw).asCleanList()
-        val r90 = Rotateable(rotated90Raw).asCleanList()
-        val r135 = Rotateable(rotated135Raw).asCleanList()
-
-        val toCheck = listOf(original, r45, r90, r135)
-        val sum = toCheck.sumOf { countForwardAndBackwards(it) }
-        println(sum)
-        return sum
-    }
-
-    check(solveProblem(day.getTestInputLines()) == 18)
-    println(solveProblem(day.getInputLines()))
 }
 
+data class CharGrid(val lines: List<String>) {
+    init { lines.checkIsASquare() }
+
+    fun enumerate3x3Grids(): List<List<String>> {
+        val rows = lines.size
+        val cols = lines[0].length
+        check(rows >= 3 || cols >= 3) { "Invalid CharGrid: must be at least 3x3 characters. ($rows, $cols)" }
+        val grids = mutableListOf<List<String>>()
+        for (i in 0 until rows - 2) {
+            for (j in 0 until cols - 2) {
+                val subGrid = (i..i + 2).map { row ->
+                    (j..j + 2).map { col ->
+                        lines[row][col]
+                    }
+                }
+                grids.add(subGrid.map { it.joinToString("") })
+            }
+        }
+        return grids.toList()
+    }
+
+}
+
+
+
+
+
+
+data class Rotateable(
+    val lines: List<String>
+) {
+    fun prettyPrint() = lines.forEach { println(it) }
+    fun asCleanList() = lines.map { it.replace(".","") }
+}
 
 /**
  * Square list of characters
  */
-data class WordSearch(
+data class OldWordSearch(
     val lines: List<String>
 ) {
     init {
         val dimensions = (listOf(lines.size) + lines.map { it.length })
-        check(
-            dimensions.distinct().count() == 1
-        ) { "Invalid WordSearch dimensions.  Expected a square, got $dimensions" }
+        check(dimensions.distinct().count() == 1 ) { "Invalid WordSearch dimensions.  Expected a square, got $dimensions" }
     }
 
     fun computeResult(debug: Boolean = false): Int {
@@ -137,3 +147,4 @@ data class WordSearch(
         }
     }
 }
+

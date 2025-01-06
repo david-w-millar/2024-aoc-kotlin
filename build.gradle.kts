@@ -14,8 +14,6 @@ dependencies {
     implementation("com.github.ajalt.mordant:mordant-core:3.0.1")
     implementation("com.github.ajalt.mordant:mordant:3.0.1")
     implementation("com.github.ajalt.mordant:mordant-markdown:3.0.1")
-
-    //implementation("org.jetbrains.kotlinx:dataframe:0.15.0")
 }
 
 sourceSets {
@@ -59,6 +57,13 @@ powerAssert {
         )
 }
 
+
+// https://github.com/Kotlin/multik
+//implementation("org.jetbrains.kotlinx:multik-core:0.2.3")
+//implementation("org.jetbrains.kotlinx:multik-default:0.2.3")
+//implementation("org.jetbrains.kotlinx:dataframe:0.15.0")
+// https://github.com/SciProgCentre/kmath?tab=readme-ov-file
+//implementation("space.kscience:kmath-core:0.3.1")
 
 /**
  * TODO: Use different thing or write new thing.
