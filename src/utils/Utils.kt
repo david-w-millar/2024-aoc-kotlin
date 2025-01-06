@@ -30,6 +30,8 @@ fun String.md5() =
 /** I really don't know why the original is deprecated */
 fun Any.decapitalize() = toString().replaceFirstChar { it.lowercase(Locale.getDefault()) }
 
+fun Any.println() = println(toString())
+
 // ------------------------- Collections -------------------------
 
 /**
