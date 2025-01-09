@@ -10,4 +10,12 @@ object Day04Inputs {
     val testInputA3 = listOf("ABC", "DEF", "GHI")
     val testInputA4 = listOf("ABCD", "EFGH", "IJKL", "MNOP")
     val testInputA6 = listOf("ABCDEF", "GHIJKL", "MNOPQR")
+
+    val expectedTestA4Grids =
+        listOf(
+            listOf("ABC", "EFG", "IJK"),
+            listOf("BCD", "FGH", "JKL"),
+            listOf("EFG", "IJK", "MNO"),
+            listOf("FGH", "JKL", "NOP")
+        )
 }
