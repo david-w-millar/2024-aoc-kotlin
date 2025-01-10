@@ -10,7 +10,6 @@ import com.github.ajalt.mordant.rendering.TextStyles.bold
 import day04.Grid3x3.CharGrid
 import utils.checkIsASquare
 import utils.prettyPrintAsGrid
-import utils.println
 
 fun main() {
 
@@ -26,14 +25,15 @@ fun main() {
         println("Jawn")
         println(grids.grids[0].getStringRep())
 
-        val valid = listOf(
-            "MMSS",
-            "MSMS",
-            "SMSM",
-            "SSMM",
-        )
+        val valid =
+            listOf(
+                "MMSS",
+                "MSMS",
+                "SMSM",
+                "SSMM",
+            )
 
-        val solution = grids.grids.count { valid.contains(it.getStringRep()) }
+        val solution = grids.filterByMiddleA().grids.count { valid.contains(it.getStringRep()) }
         println("------------------")
         println(solution)
         println("------------------")
@@ -66,10 +66,7 @@ fun main() {
 //    }
 //    getPerms()
 
-
     part2()
-
-
 }
 
 data class Grid3x3Collection(val grids: List<Grid3x3>) {
