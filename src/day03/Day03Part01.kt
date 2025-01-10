@@ -2,7 +2,7 @@ package day03
 
 import utils.Day
 
-fun main() {
+fun part1() {
     val day = Day(3, 161)
 
     val mulInstructionRegex = """mul\((\d+),(\d+)\)""".toRegex()

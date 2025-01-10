@@ -15,8 +15,8 @@ import java.util.concurrent.atomic.AtomicInteger
  * Make classes and functions coherent.
  * Eliminate repetition.
  */
-fun main() {
-    val day = Day(4, "test solution")
+fun part1() {
+    val day = Day(4, "other solution")
 
     data class Rotateable(
         val lines: List<String>

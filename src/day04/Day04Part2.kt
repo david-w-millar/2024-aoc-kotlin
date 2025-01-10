@@ -11,7 +11,7 @@ import day04.Grid3x3.CharGrid
 import utils.checkIsASquare
 import utils.prettyPrintAsGrid
 
-fun main() {
+fun part2() {
 
     fun part2() {
         // Input
