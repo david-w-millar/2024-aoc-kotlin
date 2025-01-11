@@ -103,19 +103,7 @@ data class Grid3x3(val lines: List<String>) {
     fun lr() = lines[2][2]
 
     fun getStringRep() = listOf(ul(),ur(),ll(),lr()).joinToString("")
-    fun reverseStringRep(rep: String) = listOf(ul(),ur(),ll(),lr()).joinToString("")
-
     fun prettyPrint() = lines.prettyPrintAsGrid()
-    fun prettyPrintNoX() = lines.map { it.replace("X", ".") }.prettyPrintAsGrid()
-    fun prettyPrintSmall() {
-        listOf(
-            listOf(ul(), ".", ur()),
-            listOf(".", "A", "."),
-            listOf(ll(), ".", lr())
-        ).map { it.joinToString("") }.prettyPrintAsGrid()
-    }
-
-
     fun hasMiddleA() = lines[1][1] == 'A'
     fun replaceUselessElements() =
         Grid3x3(

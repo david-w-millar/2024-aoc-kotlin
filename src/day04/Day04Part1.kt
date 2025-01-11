@@ -3,6 +3,7 @@
     "ktlint:standard:argument-list-wrapping",
     "ktlint:standard:max-line-length",
     "ktlint:standard:function-literal",
+    "ktlint:standard:class-signature",
 )
 
 package day04
@@ -16,8 +17,7 @@ fun part1() {
     val day = Day(4, "other solution")
 
     data class Rotateable(
-        val lines: List<String>,
-    ) {
+        val lines: List<String>) {
         fun asCleanList() = lines.map { it.replace(".","") }
     }
 

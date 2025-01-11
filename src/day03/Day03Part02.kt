@@ -1,21 +1,28 @@
+@file:Suppress(
+    "SpellCheckingInspection",
+    "ktlint:standard:function-signature",
+    "ktlint:standard:class-signature",
+    "ktlint:standard:multiline-expression-wrapping",
+)
+
 package day03
 
-import com.github.ajalt.mordant.rendering.TextColors.*
-import com.github.ajalt.mordant.rendering.TextStyles.*
+import com.github.ajalt.mordant.rendering.TextColors.blue
+import com.github.ajalt.mordant.rendering.TextColors.green
+import com.github.ajalt.mordant.rendering.TextColors.red
+import com.github.ajalt.mordant.rendering.TextStyles.bold
+import com.github.ajalt.mordant.rendering.TextStyles.italic
 import day03.CorruptProgram.Companion.MUL_REGEX
 import utils.readInput
 import java.util.concurrent.atomic.AtomicInteger
 
 fun part2() {
-    @Suppress("SpellCheckingInspection")
-    val exampleMulInput = $$"xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))"
-
-    @Suppress("SpellCheckingInspection")
-    val exampleConditionalInput1 = $$"xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))}"
-
-    fun part2(input: String, debug: Boolean = false): Int {
+    fun part2(
+        input: String,
+        debug: Boolean = false,
+    ): Int {
         val cp = CorruptProgram(input)
-        if ( debug ) {
+        if (debug) {
             cp.prettyPrint()
             println(cp.instructions)
         }
@@ -60,7 +67,7 @@ class CorruptProgram(val input: String) {
             when {
                 i.isDo() -> mulEnabled = true
                 i.isDont() -> mulEnabled = false
-                i.isMul() -> if( mulEnabled ) sum.getAndAdd(i.mulResult())
+                i.isMul() -> if(mulEnabled) sum.getAndAdd(i.mulResult())
             }
         }
         return sum.toInt()
@@ -68,9 +75,10 @@ class CorruptProgram(val input: String) {
 
     val instructions = instructionMatches.map { it.value }
     private val pretty = lazy {
-        input.replace(DONT_REGEX) { mr -> italic(red(mr.value))  }
-            .replace(DO_REGEX)    { mr -> italic(blue(mr.value)) }
-            .replace(MUL_REGEX)   { mr -> bold(green(mr.value))  }
+        input
+            .replace(DONT_REGEX) { mr -> italic(red(mr.value)) }
+            .replace(DO_REGEX) { mr -> italic(blue(mr.value)) }
+            .replace(MUL_REGEX) { mr -> bold(green(mr.value)) }
     }
 
     fun prettyOutput(): String = pretty.value
