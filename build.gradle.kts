@@ -14,6 +14,7 @@ dependencies {
     implementation("com.github.ajalt.mordant:mordant-core:3.0.1")
     implementation("com.github.ajalt.mordant:mordant:3.0.1")
     implementation("com.github.ajalt.mordant:mordant-markdown:3.0.1")
+
     // For permutations
     implementation("com.google.guava:guava:33.4.0-jre")
 }
@@ -33,6 +34,7 @@ tasks {
 
 kotlin {
     compilerOptions {
+        //
         freeCompilerArgs.add("-Xmulti-dollar-interpolation")
     }
 }

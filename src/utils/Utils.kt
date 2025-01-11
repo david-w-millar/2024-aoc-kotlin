@@ -8,7 +8,6 @@ import com.github.ajalt.mordant.widgets.Text
 import utils.UtilConstants.t
 import java.math.BigInteger
 import java.security.MessageDigest
-import java.util.Locale
 import kotlin.io.path.Path
 import kotlin.io.path.readText
 
@@ -27,18 +26,11 @@ fun String.md5() =
         .toString(16)
         .padStart(32, '0')
 
-/** I really don't know why the original is deprecated */
-fun Any.decapitalize() = toString().replaceFirstChar { it.lowercase(Locale.getDefault()) }
-
 fun Any.println() = println(toString())
 
 // ------------------------- Collections -------------------------
 
-/**
- * This could use a better name, but it's similar to Python's Counter.
- * https://docs.python.org/3/library/collections.html#collections.Counter
- * There must be a better way...
- */
+/** See: https://docs.python.org/3/library/collections.html#collections.Counter */
 fun <T> List<T>.elementCounts() = groupingBy { it }.eachCount()
 
 fun List<String>.checkIsASquare() {
@@ -46,21 +38,25 @@ fun List<String>.checkIsASquare() {
     check(dimensions.distinct().count() == 1) { "Invalid WordSearch dimensions.  Expected a square, got $dimensions" }
 }
 
+
+// ------------------------- Pretty Printing -------------------------
+
 fun List<String>.printLines() = forEach { println(it) }
 
 fun List<String>.prettyPrintAsGrid(title: String = "") {
     val lines = this
-    val pretty = buildList {
-        lines.forEach {
-            add(it.toList().joinToString(" "))
+    val pretty =
+        buildList {
+            lines.forEach {
+                add(it.toList().joinToString(" "))
+            }
         }
-    }
     printInPanel(pretty.joinToString("\n"), title)
 }
 
 fun List<String>.printInPanel(
     title: String = "",
-    asGrid: Boolean = true
+    asGrid: Boolean = true,
 ) = if (asGrid) printInPanel(joinToString("\n"), title) else printInPanel(joinToString(" "), title)
 
 fun printInPanel(
