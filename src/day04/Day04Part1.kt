@@ -16,8 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger
 fun part1() {
     val day = Day(4, "other solution")
 
-    data class Rotateable(
-        val lines: List<String>) {
+    data class Rotateable(val lines: List<String>) {
         fun asCleanList() = lines.map { it.replace(".","") }
     }
 

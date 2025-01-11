@@ -1,5 +1,4 @@
 @file:Suppress(
-    "SpellCheckingInspection",
     "ktlint:standard:function-signature",
     "ktlint:standard:class-signature",
     "ktlint:standard:multiline-expression-wrapping",

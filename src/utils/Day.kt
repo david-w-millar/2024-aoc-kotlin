@@ -32,10 +32,7 @@ data class Day<T,S>(
     private fun printWorkingSolution(result: Any) = println("::::: $fullName Working Solution: $result")
 
     //  Check Test Solutions
-    fun checkTestSolution(
-        result: Any,
-        expected: S = testSolution,
-    ) = check(result == testSolution) { testFailureMessage() }
+    fun checkTestSolution(result: Any) = check(result == testSolution) { testFailureMessage() }
 
     fun printWorkingSolutionAfterTest(
         result: Any,

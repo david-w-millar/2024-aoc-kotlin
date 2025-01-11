@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package utils
 
 import com.github.ajalt.mordant.rendering.TextAlign
@@ -37,7 +39,6 @@ fun List<String>.checkIsASquare() {
     val dimensions = (listOf(size) + map { it.length })
     check(dimensions.distinct().count() == 1) { "Invalid WordSearch dimensions.  Expected a square, got $dimensions" }
 }
-
 
 // ------------------------- Pretty Printing -------------------------
 

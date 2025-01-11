@@ -145,19 +145,3 @@ data class Grid3x3(val lines: List<String>) {
         }
     }
 }
-
-
-/** Recursive permute - check for libs that have this built in, this is stupid */
-fun <T> permute(list: List<T>): List<List<T>> {
-    if (list.size == 1) return listOf(list)
-    val permutations = mutableListOf<List<T>>()
-    val sub = list[0]
-    for (permutation in permute(list.drop(1))) {
-        for (i in 0..permutation.size) {
-            val newPermutation = permutation.toMutableList()
-            newPermutation.add(i, sub)
-            permutations.add(newPermutation)
-        }
-    }
-    return permutations
-}
