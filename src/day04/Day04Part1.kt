@@ -1,27 +1,23 @@
-@file:Suppress("ktlint:standard:no-wildcard-imports")
+@file:Suppress(
+    "ktlint:standard:no-wildcard-imports",
+    "ktlint:standard:argument-list-wrapping",
+    "ktlint:standard:max-line-length",
+    "ktlint:standard:function-literal",
+)
 
 package day04
 
-import com.github.ajalt.mordant.rendering.TextColors.*
-import com.github.ajalt.mordant.rendering.TextStyles.*
 import day04.WordSearch.Companion.countForwardAndBackwards
 import day04.WordSearch.Companion.rotate45Raw
 import utils.Day
 import java.util.concurrent.atomic.AtomicInteger
 
-/**
- * This is disgusting. lol
- * Move reusable parts elsewhere.
- * Make classes and functions coherent.
- * Eliminate repetition.
- */
 fun part1() {
     val day = Day(4, "other solution")
 
     data class Rotateable(
-        val lines: List<String>
+        val lines: List<String>,
     ) {
-        fun prettyPrint() = lines.forEach { println(it) }
         fun asCleanList() = lines.map { it.replace(".","") }
     }
 
@@ -50,79 +46,26 @@ fun part1() {
  * Square list of characters
  */
 data class WordSearch(
-    val lines: List<String>
+    val lines: List<String>,
 ) {
     init {
         val dimensions = (listOf(lines.size) + lines.map { it.length })
-        check(
-            dimensions.distinct().count() == 1
-        ) { "Invalid WordSearch dimensions.  Expected a square, got $dimensions" }
-    }
-
-    fun computeResult(debug: Boolean = false): Int {
-        val rotated90 = rotated90()
-        val diamond = rotate45()
-        val reverseDiamond = rotated90().rotate45()
-
-        val horizontalCount = countForwardAndBackwards(debug)
-        val verticalCount = rotated90.countForwardAndBackwards(debug)
-        val diagonalCount1 = countForwardAndBackwards(diamond)
-        val diagonalCount2 = countForwardAndBackwards(reverseDiamond)
-
-        if(debug) {
-            println(blue("--------- Counts -----------"))
-            println("::: Horizontal: ${green(horizontalCount.toString())}")
-            println("::: Vertical:   ${green(verticalCount.toString())}")
-            println("::: Diagonal 1: ${green(diagonalCount1.toString())}")
-            println("::: Diagonal 2: ${green(diagonalCount2.toString())}")
-            println(blue("\n-----------  Diagonal 1 -----------"))
-            diamond.forEach { println(it) }
-            println(blue("-----------  Diagonal 2 -----------"))
-            reverseDiamond.forEach { println(it) }
-            println(blue("-----------------------------"))
-        }
-
-        return horizontalCount + verticalCount + diagonalCount1 + diagonalCount2
-    }
-
-    fun countForwardAndBackwards(debug: Boolean = false) = countForwardAndBackwards(lines, debug)
-
-    fun rotate45() = rotate45(lines)
-
-    fun rotated90() = WordSearch(rotate90())
-    fun rotate90(): List<String> {
-        val len = lines.size
-        val rotated = buildList { lines.forEach { add(StringBuilder()) } }
-        for(l in 0 .. len - 1) {
-            for (r in 0..len - 1) {
-                rotated.get(l).append(lines.get(r).get(l))
-            }
-        }
-        return rotated.map { it.toString() }
-    }
-
-    fun prettyPrint() {
-        println(lines.joinToString("\n").replace("XMAS".toRegex()) { mr -> green(bold(mr.value)) })
+        check(dimensions.distinct().count() == 1) { "Invalid WordSearch dimensions.  Expected a square, got $dimensions" }
     }
 
     companion object {
         const val FILLER_CHAR = '.'
-        val FILLER_CHAR_REGEX = FILLER_CHAR.toString().toRegex()
-        const val XMAS = "XMAS"
-        val XMAS_REGEX = XMAS.toRegex()
+        val XMAS_REGEX = "XMAS".toRegex()
 
-        fun countForwardAndBackwards(lines: List<String>, debug: Boolean = false): Int {
+        fun countForwardAndBackwards(
+            lines: List<String>,
+            debug: Boolean = false,
+        ): Int {
             val count = AtomicInteger(0)
-            // TODO: use splat operator
             lines.forEach { count.getAndAdd(XMAS_REGEX.findAll(it).toList().size) }
             lines.forEach { count.getAndAdd(XMAS_REGEX.findAll(it.reversed()).toList().size) }
             if (debug) println("::: Forwards and backwards: $count")
             return count.toInt()
-        }
-
-        fun rotate45(lines: List<String>): List<String> {
-            val diamond = rotate45Raw(lines)
-            return diamond.map { it.joinToString("").replace(FILLER_CHAR.toString(), "") }
         }
 
         fun rotate45Raw(lines: List<String>): MutableList<MutableList<Char>> {

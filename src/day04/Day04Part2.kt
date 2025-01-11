@@ -116,7 +116,7 @@ data class Grid3x3(val lines: List<String>) {
     }
 
 
-    fun hasMiddleA() = lines.get(1).get(1) == 'A'
+    fun hasMiddleA() = lines[1][1] == 'A'
     fun replaceUselessElements() =
         Grid3x3(
             buildList {

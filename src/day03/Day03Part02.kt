@@ -27,14 +27,12 @@ fun part2() {
     // --- Tests
     val part2TestInput = readInput("src/day03/Day03_part2_test.txt")
     check(part2(part2TestInput) == 48)
-    println("::: Part 2 Test Solution: input: ${part2(exampleMulInput, true)}")
-    println("::: Part 2 Test Solution: input: ${part2(exampleConditionalInput1, true)}")
+    //println("::: Part 2 Test Solution: input: ${part2(exampleMulInput, true)}")
+    //println("::: Part 2 Test Solution: input: ${part2(exampleConditionalInput1, true)}")
 
     // --- Solve the Problem
     println("\n::: Part 2 Solution: ${part2(readInput("src/day03/Day03.txt"))}")
-
 }
-
 
 typealias Instruction = MatchResult
 fun Instruction.isDo() = value == "do()"
@@ -83,5 +81,4 @@ class CorruptProgram(val input: String) {
         val DONT_REGEX = """don't\(\)""".toRegex()
         val DO_REGEX = """do\(\)""".toRegex()
     }
-
 }

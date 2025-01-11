@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 plugins {
     kotlin("jvm") version "2.1.0"
     kotlin("plugin.power-assert") version "2.1.0"
@@ -43,9 +45,7 @@ kotlin {
 /**
  * Enable "Power Asserts" for all source sets in the project.
  * See https://kotlinlang.org/docs/power-assert.html
- *
- * NOTE: kotlin.assert only works in tests by default,
- *       without additional configuration
+ * NOTE: kotlin.assert won't work as expected without additional configuration
  */
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 powerAssert {
@@ -61,7 +61,6 @@ powerAssert {
         )
 }
 
-
 // https://github.com/Kotlin/multik
 //implementation("org.jetbrains.kotlinx:multik-core:0.2.3")
 //implementation("org.jetbrains.kotlinx:multik-default:0.2.3")
@@ -69,23 +68,3 @@ powerAssert {
 // https://github.com/SciProgCentre/kmath?tab=readme-ov-file
 //implementation("space.kscience:kmath-core:0.3.1")
 
-/**
- * TODO: Use different thing or write new thing.
- */
-//configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-//    version.set("1.5.0")
-//    debug.set(true)
-//    verbose.set(true)
-//    outputToConsole.set(true)
-//    // Does this even do anything?
-//    outputColorName.set("RED")
-//    ignoreFailures.set(false)
-//    reporters {
-//        reporter(ReporterType.PLAIN)
-//        reporter(ReporterType.CHECKSTYLE)
-//        reporter(ReporterType.HTML)
-//        reporter(ReporterType.JSON)
-//        reporter(ReporterType.PLAIN_GROUP_BY_FILE)
-//        reporter(ReporterType.SARIF)
-//    }
-//}

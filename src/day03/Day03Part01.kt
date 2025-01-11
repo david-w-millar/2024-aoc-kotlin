@@ -24,5 +24,5 @@ fun part1() {
     fun part1(lines: List<String>): Int = getValidInstructions(lines).sumOf { getMulResult(it) }
 
     check(part1(day.getTestInputLines()) == 161)
-    println("::: Part 1 Solution: " + part1(day.getInputLines()))
+    println("::: Day 03 Part 1 Solution: " + part1(day.getInputLines()))
 }

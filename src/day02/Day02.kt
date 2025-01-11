@@ -8,7 +8,6 @@ fun main() {
     fun String.toLines() = readInput(this)
     fun String.toReports() = this.toLines().map { it.toListOfInts() }
 
-    // TODO: this shouldn't be necessary
     fun List<Int>.containsDuplicates() = (toSet().size != size)
 
     fun List<Int>.isStrictlyIncreasingByAtMost(maxStep: Int = 3) =
