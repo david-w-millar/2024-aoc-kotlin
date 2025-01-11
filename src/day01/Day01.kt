@@ -5,10 +5,6 @@ import utils.elementCounts
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.absoluteValue
 
-/**
- * [AoC 2024 - Day 2](https://adventofcode.com/2024/day/2)
- */
-
 fun main() {
     fun getLists(lines: List<String>) =
         lines

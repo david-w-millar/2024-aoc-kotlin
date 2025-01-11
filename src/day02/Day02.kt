@@ -2,9 +2,6 @@ package day02
 
 import utils.readInput
 
-/**
- * [AoC 2024 - Day 2](https://adventofcode.com/2024/day/2)
- */
 fun main() {
 
     fun String.toListOfInts(regex: Regex = """\s+""".toRegex()): List<Int> = trim().split(regex).map { it.toInt() }
@@ -58,11 +55,11 @@ fun main() {
 
     val partOneSolution = part1("src/day02/Day02_test.txt".toReports())
     check(partOneSolution == 2)
-    println("::: Part1 Test: $partOneSolution")
+    //println("::: Part1 Test: $partOneSolution")
     println("::: Part1     : ${part1("src/day02/Day02.txt".toReports())}")
 
     val partTwoTest = part2("src/day02/Day02_test.txt".toReports())
     check(partTwoTest == 4)
-    println("::: Part2 Test: $partTwoTest")
+    //println("::: Part2 Test: $partTwoTest")
     println("::: Part2     : ${part2("src/day02/Day02.txt".toReports())}")
 }
