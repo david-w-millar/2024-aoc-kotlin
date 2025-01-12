@@ -1,6 +1,7 @@
 package day03
 
 import utils.Day
+import utils.printSolution
 
 fun part1() {
     val day = Day(3, 161)
@@ -21,5 +22,5 @@ fun part1() {
     fun part1(lines: List<String>): Int = getValidInstructions(lines).sumOf { getMulResult(it) }
 
     check(part1(day.getTestInputLines()) == 161)
-    println("::: Day 03 Part 1 Solution: " + part1(day.getInputLines()))
+    part1(day.getInputLines()).printSolution(3,1)
 }

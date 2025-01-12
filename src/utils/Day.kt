@@ -10,8 +10,8 @@ package utils
  *   - Test input files: day01/Day01_test.txt
  *   - Problem input files: day01/Day01.txt
  */
-data class Day<T,S>(
-    val day: T,
+data class Day<S>(
+    val day: Int,
     val testSolution: S,
     val part: Int = 1,
 ) {
@@ -29,7 +29,9 @@ data class Day<T,S>(
 
     //  ----- Output Formatting -----
     private fun testFailureMessage() = "::: $fullName Test Failed."
-    private fun printWorkingSolution(result: Any) = println("::: $fullName Solution: $result")
+
+    //private fun printWorkingSolution(result: Any) = println("::: $fullName Solution: $result")
+    private fun printWorkingSolution(result: Any) = result.printSolution(day, part)
 
     //  Check Test Solutions
     fun checkTestSolution(result: Any) = check(result == testSolution) { testFailureMessage() }

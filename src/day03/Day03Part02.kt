@@ -12,6 +12,7 @@ import com.github.ajalt.mordant.rendering.TextColors.red
 import com.github.ajalt.mordant.rendering.TextStyles.bold
 import com.github.ajalt.mordant.rendering.TextStyles.italic
 import day03.CorruptProgram.Companion.MUL_REGEX
+import utils.printSolution
 import utils.readInput
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -27,14 +28,9 @@ fun part2() {
 
     fun part2(lines: List<String>, debug: Boolean = false) = part2(lines.joinToString(), debug)
 
-    // --- Tests
     val part2TestInput = readInput("src/day03/Day03_part2_test.txt")
     check(part2(part2TestInput) == 48)
-    //println("::: Part 2 Test Solution: input: ${part2(exampleMulInput, true)}")
-    //println("::: Part 2 Test Solution: input: ${part2(exampleConditionalInput1, true)}")
-
-    // --- Solve the Problem
-    println("::: Day 03 Part 2 Solution: ${part2(readInput("src/day03/Day03.txt"))}")
+    part2(readInput("src/day03/Day03.txt")).printSolution(3, 2)
 }
 
 typealias Instruction = MatchResult

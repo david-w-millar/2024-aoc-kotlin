@@ -8,6 +8,7 @@ package day04
 
 import day04.Grid3x3.CharGrid
 import utils.checkIsASquare
+import utils.printSolution
 
 fun part2() {
     val valid = listOf("MMSS", "MSMS", "SMSM", "SSMM")
@@ -17,7 +18,7 @@ fun part2() {
             .filterByMiddleA()
             .grids
             .count { valid.contains(it.getStringRep()) }
-            .also { println("::: Day 04 Part 2 solution: $it") }
+            .printSolution(4,2)
     }
     part2()
 }

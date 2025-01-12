@@ -29,6 +29,10 @@ fun String.md5() =
         .padStart(32, '0')
 
 fun Any.println() = println(toString())
+fun Any.printSolution(
+    day: Int,
+    part: Int,
+) = println("::: Day ${day.toString().padStart(2,'0')} Part $part Solution: $this")
 
 // ------------------------- Collections -------------------------
 

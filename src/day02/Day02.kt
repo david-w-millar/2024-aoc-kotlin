@@ -1,5 +1,6 @@
 package day02
 
+import utils.printSolution
 import utils.readInput
 
 fun main() {
@@ -53,11 +54,8 @@ fun main() {
 
     val partOneSolution = part1("src/day02/Day02_test.txt".toReports())
     check(partOneSolution == 2)
-    //println("::: Day 02 Part 1 Test: $partOneSolution")
-    println("::: Day 02 Part1 Solution : ${part1("src/day02/Day02.txt".toReports())}")
-
+    part1("src/day02/Day02.txt".toReports()).printSolution(2,2)
     val partTwoTest = part2("src/day02/Day02_test.txt".toReports())
     check(partTwoTest == 4)
-    //println("::: Day 02 Part2 Test: $partTwoTest")
-    println("::: Day 02 Part2 Solution : ${part2("src/day02/Day02.txt".toReports())}")
+    part2("src/day02/Day02.txt".toReports()).printSolution(2,2)
 }

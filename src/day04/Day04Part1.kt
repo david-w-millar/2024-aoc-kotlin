@@ -32,10 +32,7 @@ fun part1() {
         return listOf(original, r45, r90, r135).sumOf { countForwardAndBackwards(it) }
     }
 
-    println("WWWWWWWWWWWWWWWWWWW")
     check(solveProblem(day.getTestInputLines()) == 18)
-    println(solveProblem(day.getInputLines()))
-    println("WWWWWWWWWWWWWWWWWWWW")
 }
 
 /** Square list of characters */
