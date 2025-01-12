@@ -16,7 +16,7 @@ import utils.printSolution
 import utils.readInput
 import java.util.concurrent.atomic.AtomicInteger
 
-fun part2() {
+internal fun part2() {
     fun part2(input: String, debug: Boolean = false): Int {
         val cp = CorruptProgram(input)
         if (debug) {
@@ -33,11 +33,11 @@ fun part2() {
     part2(readInput("src/day03/Day03.txt")).printSolution(3, 2)
 }
 
-typealias Instruction = MatchResult
-fun Instruction.isDo() = value == "do()"
-fun Instruction.isDont() = value == "don't()"
-fun Instruction.isMul() = MUL_REGEX.matches(value)
-fun Instruction.mulResult() = getMulValue(value)
+private typealias Instruction = MatchResult
+private fun Instruction.isDo() = value == "do()"
+private fun Instruction.isDont() = value == "don't()"
+private fun Instruction.isMul() = MUL_REGEX.matches(value)
+private fun Instruction.mulResult() = getMulValue(value)
 
 fun getMulValue(instruction: String): Int {
     val (x,y) =
