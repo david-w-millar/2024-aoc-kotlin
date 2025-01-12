@@ -7,7 +7,6 @@ fun main() {
     fun String.toListOfInts(regex: Regex = """\s+""".toRegex()): List<Int> = trim().split(regex).map { it.toInt() }
     fun String.toLines() = readInput(this)
     fun String.toReports() = this.toLines().map { it.toListOfInts() }
-
     fun List<Int>.containsDuplicates() = (toSet().size != size)
 
     fun List<Int>.isStrictlyIncreasingByAtMost(maxStep: Int = 3) =
@@ -54,11 +53,11 @@ fun main() {
 
     val partOneSolution = part1("src/day02/Day02_test.txt".toReports())
     check(partOneSolution == 2)
-    //println("::: Part1 Test: $partOneSolution")
-    println("::: Part1     : ${part1("src/day02/Day02.txt".toReports())}")
+    //println("::: Day 02 Part 1 Test: $partOneSolution")
+    println("::: Day 02 Part1 Solution : ${part1("src/day02/Day02.txt".toReports())}")
 
     val partTwoTest = part2("src/day02/Day02_test.txt".toReports())
     check(partTwoTest == 4)
-    //println("::: Part2 Test: $partTwoTest")
-    println("::: Part2     : ${part2("src/day02/Day02.txt".toReports())}")
+    //println("::: Day 02 Part2 Test: $partTwoTest")
+    println("::: Day 02 Part2 Solution : ${part2("src/day02/Day02.txt".toReports())}")
 }

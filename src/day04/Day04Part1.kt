@@ -4,6 +4,7 @@
     "ktlint:standard:max-line-length",
     "ktlint:standard:function-literal",
     "ktlint:standard:class-signature",
+    "unused",
 )
 
 package day04
@@ -25,28 +26,20 @@ fun part1() {
         val rotated45Raw = rotate45Raw(original).map { it.joinToString("") }
         val rotated90Raw = rotate45Raw(rotated45Raw).map { it.joinToString("") }
         val rotated135Raw = rotate45Raw(rotated90Raw).map { it.joinToString("") }
-
         val r45 = Rotateable(rotated45Raw).asCleanList()
         val r90 = Rotateable(rotated90Raw).asCleanList()
         val r135 = Rotateable(rotated135Raw).asCleanList()
-
-        val toCheck = listOf(original, r45, r90, r135)
-        val sum = toCheck.sumOf { countForwardAndBackwards(it) }
-        println(sum)
-        return sum
+        return listOf(original, r45, r90, r135).sumOf { countForwardAndBackwards(it) }
     }
 
+    println("WWWWWWWWWWWWWWWWWWW")
     check(solveProblem(day.getTestInputLines()) == 18)
     println(solveProblem(day.getInputLines()))
+    println("WWWWWWWWWWWWWWWWWWWW")
 }
 
-
-/**
- * Square list of characters
- */
-data class WordSearch(
-    val lines: List<String>,
-) {
+/** Square list of characters */
+data class WordSearch(val lines: List<String>) {
     init {
         val dimensions = (listOf(lines.size) + lines.map { it.length })
         check(dimensions.distinct().count() == 1) { "Invalid WordSearch dimensions.  Expected a square, got $dimensions" }

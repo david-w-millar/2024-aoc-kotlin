@@ -36,7 +36,6 @@ tasks {
 
 kotlin {
     compilerOptions {
-        //
         freeCompilerArgs.add("-Xmulti-dollar-interpolation")
     }
 }
@@ -45,7 +44,7 @@ kotlin {
 /**
  * Enable "Power Asserts" for all source sets in the project.
  * See https://kotlinlang.org/docs/power-assert.html
- * NOTE: kotlin.assert won't work as expected without additional configuration
+ * NOTE: "kotlin.assert" won't work as expected without additional configuration
  */
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 powerAssert {
@@ -67,4 +66,3 @@ powerAssert {
 //implementation("org.jetbrains.kotlinx:dataframe:0.15.0")
 // https://github.com/SciProgCentre/kmath?tab=readme-ov-file
 //implementation("space.kscience:kmath-core:0.3.1")
-

@@ -16,10 +16,7 @@ import utils.readInput
 import java.util.concurrent.atomic.AtomicInteger
 
 fun part2() {
-    fun part2(
-        input: String,
-        debug: Boolean = false,
-    ): Int {
+    fun part2(input: String, debug: Boolean = false): Int {
         val cp = CorruptProgram(input)
         if (debug) {
             cp.prettyPrint()
@@ -37,7 +34,7 @@ fun part2() {
     //println("::: Part 2 Test Solution: input: ${part2(exampleConditionalInput1, true)}")
 
     // --- Solve the Problem
-    println("\n::: Part 2 Solution: ${part2(readInput("src/day03/Day03.txt"))}")
+    println("::: Day 03 Part 2 Solution: ${part2(readInput("src/day03/Day03.txt"))}")
 }
 
 typealias Instruction = MatchResult

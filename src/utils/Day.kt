@@ -1,9 +1,9 @@
+@file:Suppress("ktlint:standard:function-signature")
+
 package utils
 
 /**
  * Alright, this is too much, way too early ¯\_(ツ)_/¯
- *
- * Meny assumptions...
  *
  * Conventions:
  *   - Place every day's problem in its own package - eg: day01/Day01.kt
@@ -28,20 +28,18 @@ data class Day<T,S>(
     fun getInputLines() = readInput(inputFileName)
 
     //  ----- Output Formatting -----
-    private fun testFailureMessage() = "::::: $fullName Test Failed."
-    private fun printWorkingSolution(result: Any) = println("::::: $fullName Working Solution: $result")
+    private fun testFailureMessage() = "::: $fullName Test Failed."
+    private fun printWorkingSolution(result: Any) = println("::: $fullName Solution: $result")
 
     //  Check Test Solutions
     fun checkTestSolution(result: Any) = check(result == testSolution) { testFailureMessage() }
 
-    fun printWorkingSolutionAfterTest(
-        result: Any,
-        testResult: Any,
-    ) = checkTestSolution(testResult).also {
-        printWorkingSolution(result)
-    }
+    fun printWorkingSolutionAfterTest(result: Any, testResult: Any) =
+        checkTestSolution(testResult).also {
+            printWorkingSolution(result)
+        }
 
-    // Generate Part 2
+    /** Generate Part 2 */
     fun <S> part2(testSolution: S) = Day(day, testSolution, 2)
 
     private companion object {
