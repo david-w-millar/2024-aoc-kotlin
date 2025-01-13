@@ -44,6 +44,26 @@ fun List<String>.checkIsASquare() {
     check(dimensions.distinct().count() == 1) { "Invalid WordSearch dimensions.  Expected a square, got $dimensions" }
 }
 
+/**
+ * Recursive way to find permutations
+ * find a library that does this... guava has failed me. lol
+ */
+fun <T> permutations(
+    alphabet: List<T>,
+    n: Int,
+): List<List<T>> {
+    if (n == 0) return listOf(emptyList())
+    val result = mutableListOf<List<T>>()
+    for (i in alphabet.indices) {
+        val element = alphabet[i]
+        val rest = alphabet.subList(0, i) + alphabet.subList(i + 1, alphabet.size)
+        for (permutation in permutations(rest, n - 1)) {
+            result.add(listOf(element) + permutation)
+        }
+    }
+    return result.toList()
+}
+
 // ------------------------- Pretty Printing -------------------------
 
 fun List<String>.printLines() = forEach { println(it) }
