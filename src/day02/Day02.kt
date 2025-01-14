@@ -54,7 +54,7 @@ fun main() {
 
     val partOneSolution = part1("src/day02/Day02_test.txt".toReports())
     check(partOneSolution == 2)
-    part1("src/day02/Day02.txt".toReports()).printSolution(2,2)
+    part1("src/day02/Day02.txt".toReports()).printSolution(1,2)
     val partTwoTest = part2("src/day02/Day02_test.txt".toReports())
     check(partTwoTest == 4)
     part2("src/day02/Day02.txt".toReports()).printSolution(2,2)

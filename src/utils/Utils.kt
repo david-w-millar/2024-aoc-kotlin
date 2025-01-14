@@ -1,8 +1,13 @@
-@file:Suppress("unused")
+@file:Suppress(
+    "unused",
+    "ktlint:standard:string-template",
+)
 
 package utils
 
 import com.github.ajalt.mordant.rendering.TextAlign
+import com.github.ajalt.mordant.rendering.TextColors.blue
+import com.github.ajalt.mordant.rendering.TextStyles.bold
 import com.github.ajalt.mordant.terminal.Terminal
 import com.github.ajalt.mordant.widgets.Padding
 import com.github.ajalt.mordant.widgets.Panel
@@ -33,6 +38,9 @@ fun Any.printSolution(
     day: Int,
     part: Int,
 ) = println("::: Day ${day.toString().padStart(2,'0')} Part $part Solution: $this")
+
+fun header(s: String) = println(bold(blue("::: $s")))
+
 
 // ------------------------- Collections -------------------------
 
