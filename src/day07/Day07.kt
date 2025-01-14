@@ -36,7 +36,7 @@ private data class CalEqValues(
     val operands: List<Long>,
     val ops: List<Operation>,
 ) {
-    val opCombos = run { getOperationCombos(operands.size - 1, ops).toSet() }
+    val opCombos = run { getOperationCombos(operands.size - 1, ops) }
 
     fun equationIsSolvable(): Boolean {
         // TODO: shorten with functional
@@ -46,7 +46,6 @@ private data class CalEqValues(
         return false
     }
 
-    /** TODO: bail early if we find this to be solvable */
     fun tryCombo(
         operands: List<Long>,
         ops: List<Operation>,
@@ -95,10 +94,11 @@ private val multiplication = Operation("*", { a, b -> a * b })
 private val addition = Operation("+", { a, b -> a + b })
 private val concatenation = Operation("+", { a, b -> "$a$b".toLong() })
 
-private fun getOperationCombos(n: Int, ops: List<Operation>) = permutationsWithRepetition(ops, n)
+private fun getOperationCombos(n: Int, ops: List<Operation>) = permutationsWithRepetition(ops, n).toSet()
 
 /**
  * Finds all permutations of size n, over an alphabet using recursion / backtracking.
+ * TODO: use a sequence
  * TODO: Because we have a binary alphabet now, this could probably be more concise.
  * TODO: Find a library that does this FFS
  * TODO: Even better - find a library that generates De Bruijn Sequences, and use windowing to check validity
