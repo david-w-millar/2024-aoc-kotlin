@@ -38,19 +38,16 @@ private data class CalEqValues(
 ) {
     val opCombos = run { getOperationCombos(operands.size - 1, ops) }
 
-    fun equationIsSolvable(): Boolean {
-        // TODO: shorten with functional
-        for(c in opCombos) {
-            if (tryCombo(operands, c) == total) return true
+    fun equationIsSolvable() =
+        opCombos.any {
+            tryCombo(operands, it) == total
         }
-        return false
-    }
 
     fun tryCombo(
         operands: List<Long>,
         ops: List<Operation>,
     ): Long {
-        // TODO: Check sizes
+        check(ops.size == operands.size -1) { "Too many operands (${operands.size}) for ${ops.size} operations." }
         if (ops.isEmpty()) return operands.first()
 
         val (a, b) = operands.take(2)
