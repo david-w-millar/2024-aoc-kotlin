@@ -16,14 +16,38 @@ private val input = run { readInput("src/day05/Day05.txt") }
 
 private fun part1() {
     val (rules, updates) = getRulesAndUpdates(testInput)
-    val u = updates.first()
-    val v = rules
+
+    println("::: Updates ${updates.size}")
+    val validUpdates = updates.filter {
+        it.satisfiesAllRules(rules)
+    }
+    println("::: Valid Updates ${validUpdates.size}")
+    validUpdates.forEach { println(it) }
+
+//    val u = updates.first()
+//    val ar = u.getApplicableRules(rules)
+//    println("::: Rules ${rules.size}")
+//    println("::: Input ${u}")
+//    println("::: Applicable Rules ${ar.size}")
+//    ar.forEach { println(it) }
+//
+//    println(u.satisfiesAllRules(ar))
 
 }
 
 typealias Page = List<Long>
 
 private data class Update(val updates: List<Long>) {
+    fun getApplicableRules(r: List<Rule>) = r.filter { it.appliesToUpdate(this) }
+
+    fun satisfiesAllRules(r: List<Rule>): Boolean {
+        val applicable = getApplicableRules(r)
+        applicable.forEach {
+            if (!it.appliesToUpdate(this)) return false
+        }
+        return true
+    }
+
     companion object {
         fun fromString(s: String) = Update(s.split(",").map { it.trim().toLong() })
         fun fromLines(lines: List<String>) = lines.filter { it.contains(",") }.map { Update.fromString(it) }
@@ -41,12 +65,8 @@ private data class Rule(val a: Long, val b: Long) {
             .all { u.updates.contains(it) }
 
     fun checkAgainstUpdate(u: Update): Boolean {
-        u.updates.forEach {
-            if (it == a) return true
-            if (it == b) return false
-        }
-        // Figure out how to get rid of this
-        return false
+        require(u.updates.contains(a) && u.updates.contains(b))
+        return u.updates.indexOf(a) < u.updates.indexOf(b)
     }
 
     companion object {
