@@ -7,46 +7,31 @@
 
 package day05
 
+import utils.printSolution
 import utils.readInput
-
-fun main() { part1() }
+import kotlin.Long
 
 private val testInput = run { readInput("src/day05/Day05_test.txt") }
 private val input = run { readInput("src/day05/Day05.txt") }
 
-private fun part1() {
-    val (rules, updates) = getRulesAndUpdates(testInput)
+fun main() {
+    check(part1(testInput) == 143L)
+    part1(input).printSolution(5,1)
+}
 
-    println("::: All Rules (${rules.rules.size})")
-    println(rules)
-
-    val u = updates.first()
-    val ok = u.satisfiesAllRules(rules)
-    println(ok)
-
-    println("\n\n:::::::::::::::::::::\n\n")
+private fun part1(input: List<String>): Long {
+    val (rules, updates) = getRulesAndUpdates(input)
     val validUpdates = updates.filter { it.satisfiesAllRules(rules) }
-    println("::: Valid Updates (${validUpdates.size})")
-    validUpdates.forEach { println(it) }
-
+    val sum = validUpdates.sumOf { it.getMiddlePage() }
+    return sum
 }
 
 private data class Update(val updates: List<Long>) {
     fun satisfiesAllRules(rules: Rules): Boolean {
-        println("::: Update")
-        println(this)
         val applicableRules = rules.getApplicableRules(this)
-
-        println("\n::: Applicable Rules (${applicableRules.rules.size})")
-        applicableRules.rules.forEach { println(it) }
-
-        return applicableRules.rules.all {
-            val check = it.checkAgainstUpdate(this)
-            println("::: Checking rule: $it against $this - $check")
-            check
-        }
+        return applicableRules.rules.all { it.checkAgainstUpdate(this) }
     }
-
+    fun getMiddlePage() = updates[updates.size / 2]
     override fun toString() = updates.joinToString()
 
     companion object {
@@ -78,7 +63,6 @@ private data class Rule(val a: Long, val b: Long) {
     fun appliesToUpdate(u: Update) =
         u.updates
             .containsAll(listOf(a,b))
-            .also { println(":: Update $u contains both $a and $b - $it") }
 
     override fun toString() = "$a|$b"
 
@@ -96,6 +80,6 @@ private data class Rule(val a: Long, val b: Long) {
 }
 
 private fun getRulesAndUpdates(lines: List<String>): Pair<Rules, List<Update>> {
-    val (ruleStrings, updateStrings) = testInput.filter { it.isNotEmpty() }.partition { it.contains("|") }
+    val (ruleStrings, updateStrings) = lines.filter { it.isNotEmpty() }.partition { it.contains("|") }
     return Pair(Rules.fromLines(ruleStrings), Update.fromLines(updateStrings))
 }
