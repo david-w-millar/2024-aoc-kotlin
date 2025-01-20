@@ -17,6 +17,12 @@ private val input = run { readInput("src/day05/Day05.txt") }
 fun main() {
     check(part1(testInput) == 143L)
     part1(input).printSolution(5,1)
+    part2(input)
+}
+
+
+private vun part2(input: List<String>): Long {
+  return 0
 }
 
 private fun part1(input: List<String>): Long {
