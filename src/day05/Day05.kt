@@ -23,6 +23,8 @@ fun main() {
 
 private vun part2(input: List<String>): Long {
   return 0
+    //check(part1(testInput) == 143L)
+    //part1(input).printSolution(5,1)
 }
 
 private fun part1(input: List<String>): Long {
