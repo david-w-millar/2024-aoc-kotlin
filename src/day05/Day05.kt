@@ -17,14 +17,19 @@ private val input = run { readInput("src/day05/Day05.txt") }
 fun main() {
     check(part1(testInput) == 143L)
     part1(input).printSolution(5,1)
-    part2(input)
+    //check(part2(testInput) == 123L)
+    part2(testInput).printSolution(5,2)
 }
 
 
-private vun part2(input: List<String>): Long {
-  return 0
-    //check(part1(testInput) == 143L)
-    //part1(input).printSolution(5,1)
+private fun part2(input: List<String>): Long {
+    val (rules, updates) = getRulesAndUpdates(input)
+    val invalidUpdates = updates.filter { ! it.satisfiesAllRules(rules) }
+    invalidUpdates.forEach { println(it) }
+
+
+    return 0L
+    //part2(input).printSolution(5,1)
 }
 
 private fun part1(input: List<String>): Long {
