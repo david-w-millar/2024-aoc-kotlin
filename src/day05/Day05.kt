@@ -21,12 +21,10 @@ fun main() {
     part2(testInput).printSolution(5,2)
 }
 
-
 private fun part2(input: List<String>): Long {
     val (rules, updates) = getRulesAndUpdates(input)
     val invalidUpdates = updates.filter { ! it.satisfiesAllRules(rules) }
     invalidUpdates.forEach { println(it) }
-
 
     return 0L
     //part2(input).printSolution(5,1)
